@@ -13,7 +13,7 @@ export const Character = (props: any) => {
       </a>
       <Image
         className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
-        src="/ringmaster_1.png"
+        src="/class/ringmaster.png"
         alt="character"
         width={180}
         height={37}
