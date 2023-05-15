@@ -10,7 +10,7 @@ export const Skill = (props: any) => {
             <h2 className={`mb-2 text-xl font-semibold`}>
               <Image
                 className="inline-block"
-                src="/skill/assknutampin.png"
+                src="/skill/assist/assknutampin.png"
                 alt="skill"
                 width={33}
                 height={33}
