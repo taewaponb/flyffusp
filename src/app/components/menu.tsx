@@ -27,7 +27,7 @@ export const Menu = (props: any) => {
   };
 
   return (
-    <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-3 lg:text-center">
+    <div className="grid text-center lg:mb-0 lg:grid-cols-3 lg:text-center">
       {boxData.map((data) => descriptionBox(data.header, data.detail))}
     </div>
   );

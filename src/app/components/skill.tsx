@@ -62,49 +62,52 @@ export const Skill = (props: any) => {
   };
 
   return (
-    <div className={`mb-24 grid text-center lg:mb-0 lg:grid-cols-5`}>
-      {skillData.map((data: { id: number; level: number }[]) =>
-        data.map(
-          (
-            skill: { id: number; level: number },
-            index: Key | null | undefined
-          ) =>
-            checkIsContainSkill(skill.id) ? (
-              <span key={index} className="group relative">
-                <h2 className={`text-3xl font-semibold`}>
-                  <span
-                    className={`${commonStyle} inline-block translate-x-8 group-hover:translate-x-0 hover:scale-125 hover:cursor-pointer text-green-200`}
-                    onClick={() => updateSkillLevel(skill.id, 1)}
-                  >
-                    +
-                  </span>{" "}
-                  <Image
-                    className={`${commonStyle} inline-block relative z-10 group-hover:scale-110`}
-                    src={`/skill/${skill.id}.png`}
-                    alt="skill"
-                    width={40}
-                    height={40}
-                    priority
-                    draggable={false}
-                  />
-                  <span
-                    className={`${commonStyle} inline-block absolute z-20  -right-3 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
-                  >
-                    {textSkillLevel(skill.level)}
-                  </span>{" "}
-                  <span
-                    className={`${commonStyle} inline-block -translate-x-8 group-hover:translate-x-0 hover:scale-125 hover:cursor-pointer text-red-200`}
-                    onClick={() => updateSkillLevel(skill.id, -1)}
-                  >
-                    -
-                  </span>
-                </h2>
-              </span>
-            ) : (
-              <span />
-            )
-        )
-      )}
+    <div className="grid text-center">
+      <p className={`p-2 opacity-50`}>{props.class}</p>
+      <div className={`grid text-center grid-cols-5 mb-12 lg:mb-0`}>
+        {skillData.map((data: { id: number; level: number }[]) =>
+          data.map(
+            (
+              skill: { id: number; level: number },
+              index: Key | null | undefined
+            ) =>
+              checkIsContainSkill(skill.id) ? (
+                <span key={index} className="group relative">
+                  <h2 className={`text-xs lg:text-3xl font-semibold`}>
+                    <span
+                      className={`${commonStyle} inline-block translate-x-8 group-hover:translate-x-0 hover:scale-125 hover:cursor-pointer text-green-200`}
+                      onClick={() => updateSkillLevel(skill.id, 1)}
+                    >
+                      +
+                    </span>{" "}
+                    <Image
+                      className={`${commonStyle} inline-block relative z-10 group-hover:scale-110`}
+                      src={`/skill/${skill.id}.png`}
+                      alt="skill"
+                      width={40}
+                      height={40}
+                      priority
+                      draggable={false}
+                    />
+                    <span
+                      className={`${commonStyle} inline-block absolute z-20 -right-6 lg:-right-3 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
+                    >
+                      {textSkillLevel(skill.level)}
+                    </span>{" "}
+                    <span
+                      className={`${commonStyle} inline-block -translate-x-8 group-hover:translate-x-0 hover:scale-125 hover:cursor-pointer text-red-200`}
+                      onClick={() => updateSkillLevel(skill.id, -1)}
+                    >
+                      -
+                    </span>
+                  </h2>
+                </span>
+              ) : (
+                <span />
+              )
+          )
+        )}
+      </div>
     </div>
   );
 };
