@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Flyff Universe Skill Simulator | By Taewapon B.",
+  title: "Flyff Universe Skill Planner | By Taewapon B.",
   description: "A skill simulator for Flyff Universe.",
 };
 
