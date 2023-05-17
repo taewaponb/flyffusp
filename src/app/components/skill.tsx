@@ -22,14 +22,15 @@ export const Skill = (props: any) => {
   };
 
   const updateSkillLevel = (skillId: number, value: number) => {
-    if (userData.currentPoints < value * 2) return;
+    const pointCost = value * 2;
+    if (userData.currentPoints < pointCost) return;
     const getUpdatedLevel = (level: number) => {
       let newLevel = level + value;
       let newPoints = userData.currentPoints;
 
-      if (newLevel === 21) newLevel = 20;
-      else if (newLevel === -1) newLevel = 0;
-      else newPoints -= value * 2;
+      if (newLevel >= 21) newLevel = 20;
+      else if (newLevel <= -1) newLevel = 0;
+      else newPoints -= pointCost;
 
       setUserData({ ...userData, currentPoints: newPoints });
 
@@ -50,14 +51,16 @@ export const Skill = (props: any) => {
   return (
     <div className="grid text-center">
       <p className={`p-2 opacity-50`}>{props.class}</p>
-      <div className={`grid text-center grid-cols-5 mb-12 lg:mb-0`}>
+      <div
+        className={`grid text-center grid-cols-5 mb-12 lg:mb-0  hover:cursor-pointer`}
+      >
         {skillData.map((data: { id: number; level: number }[]) =>
           data.map((skill: { id: number; level: number }, index: Key) =>
             checkIsContainSkill(skill.id) ? (
               <span key={index} className="group relative">
                 <h2 className={`text-xs lg:text-3xl font-semibold`}>
                   <span
-                    className={`${commonStyle} inline-block translate-x-8 group-hover:translate-x-0 hover:scale-125 hover:cursor-pointer text-green-400`}
+                    className={`${commonStyle} inline-block translate-x-8 group-hover:translate-x-0 hover:scale-125 text-green-400`}
                     onClick={() => updateSkillLevel(skill.id, 1)}
                   >
                     +
@@ -78,7 +81,7 @@ export const Skill = (props: any) => {
                     {textSkillLevel(skill.level)}
                   </span>{" "}
                   <span
-                    className={`${commonStyle} inline-block -translate-x-8 group-hover:translate-x-0 hover:scale-125 hover:cursor-pointer text-red-400`}
+                    className={`${commonStyle} inline-block -translate-x-8 group-hover:translate-x-0 hover:scale-125 text-red-400`}
                     onClick={() => updateSkillLevel(skill.id, -1)}
                   >
                     -
