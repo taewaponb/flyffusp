@@ -1,4 +1,4 @@
-export const playerClass = [
+export const classData = [
   {
     id: 9150,
     name: {
