@@ -16,30 +16,32 @@ const initialUserData = {
 const initialSkillData = [
   [
     { id: 1111, level: 0 },
-    { id: 2678, level: 0 },
-    { id: 8485, level: 0 },
-    { id: 964, level: 0 },
-    { id: 6432, level: 0 },
-  ],
-  [
     { id: 5653, level: 0 },
+    { id: 0, level: 0 },
+    { id: 0, level: 0 },
+  ],
+  [
+    { id: 2678, level: 0 },
     { id: 3964, level: 0 },
-    { id: 9852, level: 0 },
-    { id: 3721, level: 0 },
-    { id: 1029, level: 0 },
-  ],
-  [
-    { id: 0, level: 0 },
     { id: 1129, level: 0 },
-    { id: 7661, level: 0 },
-    { id: 690, level: 0 },
-    { id: 6858, level: 0 },
+    { id: 2615, level: 0 },
   ],
   [
-    { id: 0, level: 0 },
-    { id: 2615, level: 0 },
+    { id: 8485, level: 0 },
+    { id: 9852, level: 0 },
+    { id: 7661, level: 0 },
     { id: 3494, level: 0 },
+  ],
+  [
+    { id: 964, level: 0 },
+    { id: 3721, level: 0 },
+    { id: 690, level: 0 },
     { id: 7773, level: 0 },
+  ],
+  [
+    { id: 6432, level: 0 },
+    { id: 1029, level: 0 },
+    { id: 6858, level: 0 },
     { id: 6451, level: 0 },
   ],
 ];
