@@ -77,8 +77,8 @@ export const Skill = (props: any) => {
                         </span>{" "}
                         <Image
                           className={`${commonStyle} inline-block relative z-10 group-hover:scale-110`}
-                          src={`/skill/${skill.id}.png`}
-                          alt="skill"
+                          src={`/skills/${skill.id}.png`}
+                          alt="skillImage"
                           width={40}
                           height={40}
                           priority

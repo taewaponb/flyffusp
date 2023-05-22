@@ -17,13 +17,17 @@ export const Description = () => {
           {focusSkill == 0 ? mockTitle : `ID: ${focusSkill}`}
         </h2>
         <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-          {mockDescription}
+          {focusSkill == 0 ? mockDescription : `Desc: ${focusSkill}`}
         </p>
       </a>
       <Image
         className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
-        src="/class/character/ringmaster.png"
-        alt="character"
+        src={
+          focusSkill
+            ? `/skills/${focusSkill}.png`
+            : "/class/character/ringmaster.png"
+        }
+        alt="descriptionImage"
         width={180}
         height={37}
         priority
