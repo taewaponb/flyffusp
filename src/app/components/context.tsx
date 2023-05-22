@@ -54,25 +54,32 @@ interface tempSkillDataType {
 const AppContext = createContext<{
   userData: IPlayerData;
   skillData: tempSkillDataType[][];
+  focusSkill: number;
   setUserData: React.Dispatch<React.SetStateAction<IPlayerData>>;
   setSkillData: React.Dispatch<React.SetStateAction<tempSkillDataType[][]>>;
+  setFocusSkill: React.Dispatch<React.SetStateAction<number>>;
 }>({
   userData: initialUserData,
   skillData: initialSkillData,
+  focusSkill: 0,
   setUserData: () => {},
   setSkillData: () => {},
+  setFocusSkill: () => {},
 });
 
 export const AppWrapper = ({ children }: { children: JSX.Element }) => {
   const [userData, setUserData] = useState<IPlayerData>(initialUserData);
   const [skillData, setSkillData] =
     useState<tempSkillDataType[][]>(initialSkillData);
+  const [focusSkill, setFocusSkill] = useState<number>(0);
 
   const sharedState = {
     userData,
     skillData,
+    focusSkill,
     setUserData,
     setSkillData,
+    setFocusSkill,
   };
 
   return (
@@ -80,4 +87,4 @@ export const AppWrapper = ({ children }: { children: JSX.Element }) => {
   );
 };
 
-export const useGameContext = () => useContext(AppContext);
+export const useAppContext = () => useContext(AppContext);

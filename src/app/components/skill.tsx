@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Key } from "react";
-import { useGameContext } from "./context";
+import { useAppContext } from "./context";
 
 const commonStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
 export const Skill = (props: any) => {
-  const { userData, skillData, setSkillData, setUserData } = useGameContext();
+  const { userData, skillData, setSkillData, setUserData, setFocusSkill } =
+    useAppContext();
 
   const checkIsContainSkill = (skill: number) => skill !== 0;
   const textSkillLevel = (level: number) => {
@@ -48,6 +48,10 @@ export const Skill = (props: any) => {
     setSkillData(newSkillData);
   };
 
+  const setFocus = (skillId: number) => {
+    setFocusSkill(skillId);
+  };
+
   return (
     <div className="grid text-center">
       <p className={`p-2 opacity-50`}>{props.class}</p>
@@ -79,7 +83,7 @@ export const Skill = (props: any) => {
                           height={40}
                           priority
                           draggable={false}
-                          onClick={() => updateSkillLevel(skill.id, 20)}
+                          onClick={() => setFocus(skill.id)}
                         />
                         <span
                           className={`${commonStyle} inline-block absolute z-20 -right-6 lg:-right-3 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}

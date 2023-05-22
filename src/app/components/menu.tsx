@@ -1,9 +1,9 @@
 "use client";
 
-import { useGameContext } from "./context";
+import { useAppContext } from "./context";
 
 export const Menu = (props: any) => {
-  const { userData, skillData, setUserData, setSkillData } = useGameContext();
+  const { userData, skillData, setUserData, setSkillData } = useAppContext();
   const menuData = [
     {
       header: "Points",
