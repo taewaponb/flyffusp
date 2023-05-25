@@ -3,7 +3,7 @@
 import React from "react";
 import { createContext, useContext, useState } from "react";
 import { CHARACTERCLASS } from "../data/enum";
-import { IPlayerData } from "../data/interface";
+import { IPlayerData, ISkillData } from "../data/interface";
 
 const initialUserData = {
   id: 1,
@@ -44,19 +44,14 @@ const initialSkillData = [
     { id: 6858, level: 0 },
     { id: 6451, level: 0 },
   ],
-];
-
-interface tempSkillDataType {
-  id: number;
-  level: number;
-}
+] as ISkillData[][];
 
 const AppContext = createContext<{
   userData: IPlayerData;
-  skillData: tempSkillDataType[][];
+  skillData: ISkillData[][];
   focusSkill: number;
   setUserData: React.Dispatch<React.SetStateAction<IPlayerData>>;
-  setSkillData: React.Dispatch<React.SetStateAction<tempSkillDataType[][]>>;
+  setSkillData: React.Dispatch<React.SetStateAction<ISkillData[][]>>;
   setFocusSkill: React.Dispatch<React.SetStateAction<number>>;
 }>({
   userData: initialUserData,
@@ -69,8 +64,7 @@ const AppContext = createContext<{
 
 export const AppWrapper = ({ children }: { children: JSX.Element }) => {
   const [userData, setUserData] = useState<IPlayerData>(initialUserData);
-  const [skillData, setSkillData] =
-    useState<tempSkillDataType[][]>(initialSkillData);
+  const [skillData, setSkillData] = useState<ISkillData[][]>(initialSkillData);
   const [focusSkill, setFocusSkill] = useState<number>(0);
 
   const sharedState = {

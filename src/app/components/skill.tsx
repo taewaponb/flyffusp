@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useAppContext } from "./context";
+import { getSkillDatafromId } from "../helper/helper";
 
 const commonStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
@@ -22,7 +23,7 @@ export const Skill = (props: any) => {
   };
 
   const updateSkillLevel = (skillId: number, value: number) => {
-    const pointCost = value * 2;
+    const pointCost = value * getSkillDatafromId(skillId)!.skillPoints;
     if (userData.currentPoints < pointCost) return;
     const getUpdatedLevel = (level: number) => {
       let newLevel = level + value;

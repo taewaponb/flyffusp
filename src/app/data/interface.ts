@@ -7,3 +7,8 @@ export interface IPlayerData {
   currentPoints: number;
   allPoints: number;
 }
+
+export interface ISkillData {
+  id: number;
+  level: number;
+}
