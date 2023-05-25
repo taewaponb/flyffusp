@@ -15,7 +15,7 @@ const initialUserData = {
 
 const initialSkillData = [
   [
-    { id: 1111, level: 0 },
+    { id: 8203, level: 0 },
     { id: 5653, level: 0 },
     { id: 0, level: 0 },
     { id: 0, level: 0 },

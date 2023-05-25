@@ -23,6 +23,7 @@ export const Skill = (props: any) => {
   };
 
   const updateSkillLevel = (skillId: number, value: number) => {
+    setFocus(skillId);
     const pointCost = value * getSkillDatafromId(skillId)!.skillPoints;
     if (userData.currentPoints < pointCost) return;
     const getUpdatedLevel = (level: number) => {
@@ -78,7 +79,7 @@ export const Skill = (props: any) => {
                         </span>{" "}
                         <Image
                           className={`${commonStyle} inline-block relative z-10 group-hover:scale-110`}
-                          src={`/skills/${skill.id}.png`}
+                          src={`/skills/${getSkillDatafromId(skill.id)?.icon}`}
                           alt="skillImage"
                           width={40}
                           height={40}
@@ -88,6 +89,7 @@ export const Skill = (props: any) => {
                         />
                         <span
                           className={`${commonStyle} inline-block absolute z-20 -right-6 lg:-right-3 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
+                          onClick={() => setFocus(skill.id)}
                         >
                           {textSkillLevel(skill.level)}
                         </span>{" "}

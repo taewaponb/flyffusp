@@ -12,3 +12,12 @@ export enum CHARACTERCLASS {
   PSYCHIKEEPER = "Psykeeper",
   ELEMENTOR = "Elementor",
 }
+
+export enum PARAMS {
+  HP = "hp",
+  TIME = "time",
+  ATTRIBUTE = "attribute",
+  ATTACK = "attack",
+  INCOMINGDAMAGE = "incomingdamage",
+  DURATION = "duration",
+}
