@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import { useAppContext } from "./context";
-import { getSkillDatafromId, getTimeFormat } from "../helper/helper";
+import {
+  getSkillDatafromId,
+  getSpecialParamsDetail,
+  getTimeFormat,
+  isSpecialParams,
+} from "../helper/helper";
 import { PARAMS } from "../data/enum";
 
 export const Description = () => {
@@ -44,76 +49,140 @@ export const Description = () => {
     const isBaseValid = (param: string) =>
       param === PARAMS.HP || param === PARAMS.ATTACK;
 
-    const isScaleValie = (param: string) =>
+    const isScaleValid = (param: string) =>
       param === PARAMS.TIME || param === PARAMS.DURATION;
+
+    const Tab = (data: { value: string; style?: string }) => (
+      <p className={`m-0 lg:w-[40ch] text-sm ${data.style}`}>{data.value}</p>
+    );
 
     return (
       <>
-        <p className={`m-0 lg:w-[40ch] text-sm`}>
-          {`MP: ${skillLevel?.consumedMP}`}
-        </p>
-        <p className={`m-0 lg:w-[40ch] text-sm`}>
-          {`Character Level: ${currentSkill?.level}`}
-        </p>
+        <Tab value={`MP: ${skillLevel?.consumedMP}`} />
+
+        {/* {skillLevel?.requirements && (
+          <Tab
+            value={`Base Damage: ${skillLevel?.minAttack} ~ ${skillLevel?.maxAttack}`}
+            style="font-bold"
+          />
+        )} */}
+
+        <Tab value={`Character Level: ${currentSkill?.level}`} />
+
         {skillLevel?.damageMultiplier && (
-          <p className={`m-0 lg:w-[40ch] text-sm font-bold`}>
-            {`Base Damage: ${skillLevel?.minAttack} ~ ${skillLevel?.maxAttack}`}
-          </p>
+          <Tab
+            value={`Base Damage: ${skillLevel?.minAttack} ~ ${skillLevel?.maxAttack}`}
+            style="font-bold"
+          />
         )}
-        {levelAbility?.map(
-          (ability) =>
-            isBaseValid(ability.parameter) && (
-              <p className={`m-0 lg:w-[40ch] text-sm font-bold`}>
-                {`Base ${getParamLabel(ability.parameter)}: ${ability.add}`}
-              </p>
-            )
-        )}
-        {levelScaling?.map(
-          (scaling) =>
-            isBaseValid(scaling.parameter) && (
-              <p className={`m-0 lg:w-[40ch] text-sm font-bold`}>
-                {`${getParamLabel(
+
+        {levelAbility?.map((ability) => {
+          if (isBaseValid(ability.parameter)) {
+            return (
+              <Tab
+                value={`Base ${getParamLabel(ability.parameter)}: ${
+                  ability.add
+                }`}
+                style="font-bold"
+                key={ability.parameter}
+              />
+            );
+          }
+          return null;
+        })}
+
+        {levelScaling?.map((scaling) => {
+          if (isBaseValid(scaling.parameter)) {
+            return (
+              <Tab
+                value={`${getParamLabel(
                   scaling.parameter
                 )} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
-              </p>
-            )
-        )}
+                style="font-bold"
+                key={scaling.parameter}
+              />
+            );
+          }
+          return null;
+        })}
+
         {skillLevel?.duration && (
-          <p className={`m-0 lg:w-[40ch] text-sm font-bold`}>
-            {`Base Time: ${getTimeFormat(skillLevel?.duration)}`}
-          </p>
+          <Tab
+            value={`Base Time: ${getTimeFormat(skillLevel?.duration)}`}
+            style="font-bold"
+          />
         )}
-        {levelScaling?.map(
-          (scaling) =>
-            isScaleValie(scaling.parameter) && (
-              <p className={`m-0 lg:w-[40ch] text-sm font-bold`}>
-                {`${getParamLabel(
+
+        {levelScaling?.map((scaling) => {
+          if (isScaleValid(scaling.parameter)) {
+            return (
+              <Tab
+                value={`${getParamLabel(
                   scaling.parameter
                 )} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
-              </p>
-            )
+                style="font-bold"
+                key={scaling.parameter}
+              />
+            );
+          }
+          return null;
+        })}
+
+        {skillLevel?.casting && Number(skillLevel?.casting) >= 1 && (
+          <Tab
+            value={`Casting Time: ${getTimeFormat(skillLevel?.casting)}`}
+            style="font-bold"
+          />
         )}
+
         {skillLevel?.cooldown && (
-          <p className={`m-0 lg:w-[40ch] text-sm font-bold`}>
-            {`Cooldown: ${getTimeFormat(skillLevel?.cooldown)}`}
-          </p>
+          <Tab
+            value={`Cooldown: ${getTimeFormat(skillLevel?.cooldown)}`}
+            style="font-bold"
+          />
         )}
+
         {skillLevel?.dotTick && (
-          <p className={`m-0 lg:w-[40ch] text-sm font-bold`}>
-            {`DoT Tick: ${skillLevel?.dotTick} Seconds`}
-          </p>
+          <Tab
+            value={`DoT Tick: ${skillLevel?.dotTick} Seconds`}
+            style="font-bold"
+          />
         )}
-        {levelAbility?.map(
-          (ability) =>
-            ability.parameter === PARAMS.INCOMINGDAMAGE && (
-              <p
-                className={`m-0 lg:w-[40ch] text-sm text-indigo-500`}
-              >{`Incoming Damage+${ability.add}%`}</p>
-            )
-        )}
-        <p className={`m-0 lg:w-[40ch] text-sm`}>
-          {`${currentSkill?.description.en}`}
-        </p>
+
+        {levelAbility?.map((ability) => {
+          if (isSpecialParams(ability.parameter)) {
+            return (
+              <Tab
+                value={`${getSpecialParamsDetail(ability.parameter)}+${
+                  ability.add
+                }%`}
+                style="text-indigo-500"
+                key={ability.parameter}
+              />
+            );
+          }
+          return null;
+        })}
+
+        {levelScaling?.map((scaling) => {
+          if (isSpecialParams(scaling.parameter)) {
+            const perstats = 25;
+            return (
+              <Tab
+                value={`${getSpecialParamsDetail(
+                  scaling.parameter
+                )} Scaling: +${
+                  Number(scaling.scale) * perstats
+                }% per ${perstats} INT (max ${scaling.maximum}%)`}
+                style="text-amber-500"
+                key={scaling.parameter}
+              />
+            );
+          }
+          return null;
+        })}
+
+        <Tab value={`${currentSkill?.description.en}`} />
       </>
     );
   };

@@ -1,4 +1,4 @@
-import { SKILLS } from "../data/skills";
+import { SKILLS, SPECIALPARAMS } from "../data/skills";
 
 export const getSkillDatafromId = (id: number) =>
   SKILLS.find((skill) => skill.id === id);
@@ -10,4 +10,12 @@ export const getTimeFormat = (duration: number) => {
   time += "0" + mins + ":" + (secs < 10 ? "0" : "");
   time += "" + secs;
   return time;
+};
+
+export const isSpecialParams = (skill: any) => {
+  return SPECIALPARAMS.find((item) => item.params === skill);
+};
+
+export const getSpecialParamsDetail = (skill: any) => {
+  return SPECIALPARAMS.find((item) => item.params === skill)?.detail;
 };

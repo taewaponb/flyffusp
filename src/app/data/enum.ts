@@ -18,6 +18,5 @@ export enum PARAMS {
   TIME = "time",
   ATTRIBUTE = "attribute",
   ATTACK = "attack",
-  INCOMINGDAMAGE = "incomingdamage",
   DURATION = "duration",
 }

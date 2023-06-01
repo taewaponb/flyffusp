@@ -64,6 +64,7 @@ export interface IScalingParameters {
   parameter: string;
   stat: string;
   scale?: number;
+  maximum?: number;
   pvp?: boolean;
   pve?: boolean;
 }
