@@ -43,10 +43,12 @@ export interface ISkillLevel {
   maxAttack?: number;
   dotTick?: number;
   consumedMP?: number;
+  consumedFP?: number;
   cooldown?: number;
   casting?: number;
   duration?: number;
   durationPVP?: number;
+  spellRange?: number;
   abilities: IAbilities[];
   scalingParameters: IScalingParameters[];
 }
@@ -58,6 +60,10 @@ export interface IAbilities {
   dotValue?: number;
   add?: number;
   rate?: boolean;
+  skill: number;
+  skillLevel: number;
+  pvp: true;
+  pve: false;
 }
 
 export interface IScalingParameters {

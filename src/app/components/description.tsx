@@ -58,25 +58,24 @@ export const Description = () => {
 
     return (
       <>
-        <Tab value={`MP: ${skillLevel?.consumedMP}`} />
-
-        {/* {skillLevel?.requirements && (
-          <Tab
-            value={`Base Damage: ${skillLevel?.minAttack} ~ ${skillLevel?.maxAttack}`}
-            style="font-bold"
-          />
-        )} */}
+        <Tab
+          value={`${skillLevel?.consumedMP ? "MP" : "FP"}: ${
+            skillLevel?.consumedMP
+              ? skillLevel?.consumedMP
+              : skillLevel?.consumedFP
+          }`}
+        />
 
         <Tab value={`Character Level: ${currentSkill?.level}`} />
 
-        {skillLevel?.damageMultiplier && (
+        {skillLevel?.minAttack && (
           <Tab
             value={`Base Damage: ${skillLevel?.minAttack} ~ ${skillLevel?.maxAttack}`}
             style="font-bold"
           />
         )}
 
-        {levelAbility?.map((ability) => {
+        {levelAbility?.map((ability, index) => {
           if (isBaseValid(ability.parameter)) {
             return (
               <Tab
@@ -84,14 +83,14 @@ export const Description = () => {
                   ability.add
                 }`}
                 style="font-bold"
-                key={ability.parameter}
+                key={index}
               />
             );
           }
           return null;
         })}
 
-        {levelScaling?.map((scaling) => {
+        {levelScaling?.map((scaling, index) => {
           if (isBaseValid(scaling.parameter)) {
             return (
               <Tab
@@ -99,7 +98,7 @@ export const Description = () => {
                   scaling.parameter
                 )} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
                 style="font-bold"
-                key={scaling.parameter}
+                key={index}
               />
             );
           }
@@ -113,7 +112,7 @@ export const Description = () => {
           />
         )}
 
-        {levelScaling?.map((scaling) => {
+        {levelScaling?.map((scaling, index) => {
           if (isScaleValid(scaling.parameter)) {
             return (
               <Tab
@@ -121,7 +120,7 @@ export const Description = () => {
                   scaling.parameter
                 )} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
                 style="font-bold"
-                key={scaling.parameter}
+                key={index}
               />
             );
           }
@@ -131,6 +130,13 @@ export const Description = () => {
         {skillLevel?.casting && Number(skillLevel?.casting) >= 1 && (
           <Tab
             value={`Casting Time: ${getTimeFormat(skillLevel?.casting)}`}
+            style="font-bold"
+          />
+        )}
+
+        {skillLevel?.spellRange && (
+          <Tab
+            value={`Spell Range: ${skillLevel?.spellRange} (${currentSkill?.target})`}
             style="font-bold"
           />
         )}
@@ -149,7 +155,11 @@ export const Description = () => {
           />
         )}
 
-        {levelAbility?.map((ability) => {
+        {!currentSkill?.flying && (
+          <Tab value={`Flying: No`} style="font-bold" />
+        )}
+
+        {levelAbility?.map((ability, index) => {
           if (isSpecialParams(ability.parameter)) {
             return (
               <Tab
@@ -157,14 +167,14 @@ export const Description = () => {
                   ability.add
                 }%`}
                 style="text-indigo-500"
-                key={ability.parameter}
+                key={index}
               />
             );
           }
           return null;
         })}
 
-        {levelScaling?.map((scaling) => {
+        {levelScaling?.map((scaling, index) => {
           if (isSpecialParams(scaling.parameter)) {
             const perstats = 25;
             return (
@@ -175,7 +185,7 @@ export const Description = () => {
                   Number(scaling.scale) * perstats
                 }% per ${perstats} INT (max ${scaling.maximum}%)`}
                 style="text-amber-500"
-                key={scaling.parameter}
+                key={index}
               />
             );
           }
