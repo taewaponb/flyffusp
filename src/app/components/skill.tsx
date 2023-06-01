@@ -11,6 +11,8 @@ export const Skill = (props: any) => {
     useAppContext();
 
   const checkIsContainSkill = (skill: number) => skill !== 0;
+  const skillStyle = (level: number) =>
+    level === 0 ? "grayscale" : "grayscale-0";
   const textSkillLevel = (level: number) => {
     switch (level) {
       case 0:
@@ -21,6 +23,8 @@ export const Skill = (props: any) => {
         return level.toString();
     }
   };
+
+  const setFocus = (skillId: number) => setFocusSkill(skillId);
 
   const updateSkillLevel = (skillId: number, value: number) => {
     setFocus(skillId);
@@ -50,10 +54,6 @@ export const Skill = (props: any) => {
     setSkillData(newSkillData);
   };
 
-  const setFocus = (skillId: number) => {
-    setFocusSkill(skillId);
-  };
-
   return (
     <div className="grid text-center">
       <p className={`p-2 opacity-50`}>{props.class}</p>
@@ -78,7 +78,9 @@ export const Skill = (props: any) => {
                           +
                         </span>{" "}
                         <Image
-                          className={`${commonStyle} inline-block relative z-10 group-hover:scale-110`}
+                          className={`${commonStyle} ${skillStyle(
+                            skill.level
+                          )} inline-block relative z-10 group-hover:scale-110 hover:grayscale-0`}
                           src={`/skills/${getSkillDatafromId(skill.id)?.icon}`}
                           alt="skillImage"
                           width={40}
