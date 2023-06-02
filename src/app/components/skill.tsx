@@ -87,7 +87,9 @@ export const Skill = (props: any) => {
                         <Image
                           className={`${commonStyle} ${skillStyle(
                             skill
-                          )} inline-block relative z-10 group-hover:scale-110 hover:grayscale-[50%]`}
+                          )} inline-block relative z-10 group-hover:scale-110 hover:${skillStyle(
+                            skill
+                          )}`}
                           src={`/skills/${getSkillDataFromId(skill.id)?.icon}`}
                           alt="skillImage"
                           width={40}

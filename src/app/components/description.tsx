@@ -5,11 +5,8 @@ import { useAppContext } from "./context";
 import {
   getSkillContextFromId,
   getSkillDataFromId,
-  getSpecialParamsDetail,
-  getSpecialParamsPrefix,
-  getSpecialParamsSuffix,
   getTimeFormat,
-  isSpecialParams,
+  getSpecialParams,
 } from "../helper/helper";
 import { PARAMS } from "../data/enum";
 
@@ -46,6 +43,17 @@ export const Description = () => {
           return "Time";
         default:
           return param;
+      }
+    };
+
+    const getRangeText = (text: string | undefined) => {
+      switch (text) {
+        case "area":
+          return "Around";
+        case "party":
+          return "Party";
+        default:
+          return text;
       }
     };
 
@@ -156,7 +164,9 @@ export const Description = () => {
 
         {skillLevel?.spellRange && (
           <Tab
-            value={`Spell Range: ${skillLevel?.spellRange} (${currentSkill?.target})`}
+            value={`Spell Range: ${skillLevel?.spellRange} (${getRangeText(
+              currentSkill?.target
+            )})`}
             style="font-bold"
           />
         )}
@@ -180,10 +190,10 @@ export const Description = () => {
         )}
 
         {levelAbility?.map((ability, index) => {
-          if (isSpecialParams(ability.parameter)) {
-            const detail = getSpecialParamsDetail(ability.parameter);
-            const prefix = getSpecialParamsPrefix(ability.parameter);
-            const suffix = getSpecialParamsSuffix(ability.parameter);
+          if (getSpecialParams(ability.parameter)) {
+            const detail = getSpecialParams(ability.parameter)?.detail;
+            const prefix = getSpecialParams(ability.parameter)?.prefix;
+            const suffix = getSpecialParams(ability.parameter)?.suffix;
 
             return (
               <Tab
@@ -197,11 +207,11 @@ export const Description = () => {
         })}
 
         {levelScaling?.map((scaling, index) => {
-          if (isSpecialParams(scaling.parameter)) {
+          if (getSpecialParams(scaling.parameter)) {
             const perstats = 25;
-            const detail = getSpecialParamsDetail(scaling.parameter);
-            const prefix = getSpecialParamsPrefix(scaling.parameter);
-            const suffix = getSpecialParamsSuffix(scaling.parameter);
+            const detail = getSpecialParams(scaling.parameter)?.detail;
+            const prefix = getSpecialParams(scaling.parameter)?.prefix;
+            const suffix = getSpecialParams(scaling.parameter)?.suffix;
 
             return (
               <Tab

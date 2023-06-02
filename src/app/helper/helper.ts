@@ -18,18 +18,41 @@ export const getTimeFormat = (duration: number) => {
   return time;
 };
 
-export const isSpecialParams = (skill: any) => {
+export const getSpecialParams = (skill: any) => {
   return SPECIALPARAMS.find((item) => item.params === skill);
 };
 
-export const getSpecialParamsDetail = (skill: any) => {
-  return SPECIALPARAMS.find((item) => item.params === skill)?.detail;
-};
+export const getPoints = (level: number) => {
+  const minPoints = 88;
+  const classBonus = 100;
+  let points = minPoints;
 
-export const getSpecialParamsPrefix = (skill: any) => {
-  return SPECIALPARAMS.find((item) => item.params === skill)?.prefix;
-};
+  if (level == 15) {
+    minPoints;
+  } else if (level < 21) {
+    points += 2 * (level - 15);
+  } else if (level < 41) {
+    points += 2 * 5 + 3 * (level - 20);
+  } else if (level == 60) {
+    points += 2 * 5 + 3 * 20 + 4 * (level - 40) + classBonus;
+  } else if (level < 61) {
+    points += 2 * 5 + 3 * 20 + 4 * (level - 40);
+  } else if (level < 81) {
+    points += 2 * 5 + 3 * 20 + 4 * 20 + 5 * (level - 60) + classBonus;
+  } else if (level < 101) {
+    points += 2 * 5 + 3 * 20 + 4 * 20 + 5 * 20 + 6 * (level - 80) + classBonus;
+  } else if (level < 120) {
+    points +=
+      2 * 5 +
+      3 * 20 +
+      4 * 20 +
+      5 * 20 +
+      6 * 20 +
+      7 * (level - 100) +
+      classBonus;
+  } else {
+    points = 698;
+  }
 
-export const getSpecialParamsSuffix = (skill: any) => {
-  return SPECIALPARAMS.find((item) => item.params === skill)?.suffix;
+  return points;
 };
