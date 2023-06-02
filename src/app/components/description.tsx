@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useAppContext } from "./context";
 import {
-  getSkillDatafromId,
+  getSkillContextFromId,
+  getSkillDataFromId,
   getSpecialParamsDetail,
   getTimeFormat,
   isSpecialParams,
@@ -17,7 +18,7 @@ export const Description = () => {
   const mockDescription =
     "Ringmasters make great allies, using their sticks to protect themselves and their friends. Their use of healing and support capabilities make them vital party members in any battle.";
 
-  const currentSkill = getSkillDatafromId(focusSkill);
+  const currentSkill = getSkillDataFromId(focusSkill);
   const currentSkillSet = skillData.filter((data) =>
     data.find((skill) => skill.id === focusSkill)
   )[0];
@@ -67,18 +68,15 @@ export const Description = () => {
         />
 
         {currentSkill?.requirements?.map((req, index) => {
-          const skillName = getSkillDatafromId(req.skill)?.name.en;
-          const requireSkill = skillData
-            .filter((data) => data.find((skill) => skill.id === req.skill))
-            .map((data) => data.find((skill) => skill.id === req.skill)!)[0];
-
-          const isSkillValid = () =>
-            requireSkill.level >= req.level ? "" : "text-red-600";
+          const skillName = getSkillDataFromId(req.skill)?.name.en;
+          const requiredSkill = getSkillContextFromId(skillData, req.skill);
+          const isSkillValid =
+            requiredSkill.level >= req.level ? "" : "text-red-600";
 
           return (
             <Tab
               value={`${skillName} skill level ${req.level} is needed.`}
-              style={isSkillValid()}
+              style={isSkillValid}
               key={index}
             />
           );
@@ -221,7 +219,7 @@ export const Description = () => {
         <h2 className={`mb-3 text-2xl font-semibold`}>
           {focusSkill == 0
             ? mockTitle
-            : `${getSkillDatafromId(focusSkill)?.name.en} ${
+            : `${getSkillDataFromId(focusSkill)?.name.en} ${
                 currentSkillLevel != 0 ? `Lv. ${currentSkillLevel}` : ``
               }`}
         </h2>

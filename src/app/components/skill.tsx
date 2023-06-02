@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useAppContext } from "./context";
-import { getSkillDatafromId } from "../helper/helper";
+import { getSkillContextFromId, getSkillDataFromId } from "../helper/helper";
 
 const commonStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
@@ -11,24 +11,27 @@ export const Skill = (props: any) => {
     useAppContext();
 
   const checkIsContainSkill = (skill: number) => skill !== 0;
-  const skillStyle = (level: number) =>
-    level === 0 ? "grayscale" : "grayscale-0";
+  const setFocus = (skillId: number) => setFocusSkill(skillId);
   const textSkillLevel = (level: number) => {
-    switch (level) {
-      case 0:
-        return "";
-      case 20:
-        return "max";
-      default:
-        return level.toString();
-    }
+    if (level == 0) return "";
+    if (level == 20) return "max";
+    else return level.toString();
   };
 
-  const setFocus = (skillId: number) => setFocusSkill(skillId);
+  const skillStyle = (skill: { id: number; level: number }) => {
+    const currentSkill = getSkillDataFromId(skill.id);
+    const requiredSkillResult = currentSkill?.requirements.map(
+      (req) => getSkillContextFromId(skillData, req.skill).level >= req.level
+    );
+
+    if (requiredSkillResult?.includes(false)) return "grayscale";
+    if (skill.level == 0) return "grayscale-[50%]";
+    else return "grayscale-0";
+  };
 
   const updateSkillLevel = (skillId: number, value: number) => {
     setFocus(skillId);
-    const pointCost = value * getSkillDatafromId(skillId)!.skillPoints;
+    const pointCost = value * getSkillDataFromId(skillId)!.skillPoints;
     if (userData.currentPoints < pointCost) return;
     const getUpdatedLevel = (level: number) => {
       let newLevel = level + value;
@@ -79,9 +82,9 @@ export const Skill = (props: any) => {
                         </span>{" "}
                         <Image
                           className={`${commonStyle} ${skillStyle(
-                            skill.level
+                            skill
                           )} inline-block relative z-10 group-hover:scale-110 hover:grayscale-0`}
-                          src={`/skills/${getSkillDatafromId(skill.id)?.icon}`}
+                          src={`/skills/${getSkillDataFromId(skill.id)?.icon}`}
                           alt="skillImage"
                           width={40}
                           height={40}

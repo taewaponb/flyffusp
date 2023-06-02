@@ -1,7 +1,13 @@
+import { ISkillData } from "../data/interface";
 import { SKILLS, SPECIALPARAMS } from "../data/skills";
 
-export const getSkillDatafromId = (id: number) =>
+export const getSkillDataFromId = (id: number) =>
   SKILLS.find((skill) => skill.id === id);
+
+export const getSkillContextFromId = (skillData: ISkillData[][], id: number) =>
+  skillData
+    .filter((data) => data.find((skill) => skill.id === id))
+    .map((data) => data.find((skill) => skill.id === id)!)[0];
 
 export const getTimeFormat = (duration: number) => {
   const mins = ~~((duration % 3600) / 60);
