@@ -26,7 +26,7 @@ export interface ISkill {
   level: number;
   element: string;
   magic: boolean;
-  requirements: [];
+  requirements: ISkillRequire[];
   weapon: string;
   combo: string;
   debuff: boolean;
@@ -35,6 +35,11 @@ export interface ISkill {
   target: string;
   skillPoints: number;
   levels: ISkillLevel[];
+}
+
+export interface ISkillRequire {
+  level: number;
+  skill: number;
 }
 
 export interface ISkillLevel {

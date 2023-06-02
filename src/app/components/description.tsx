@@ -66,6 +66,24 @@ export const Description = () => {
           }`}
         />
 
+        {currentSkill?.requirements?.map((req, index) => {
+          const skillName = getSkillDatafromId(req.skill)?.name.en;
+          const requireSkill = skillData
+            .filter((data) => data.find((skill) => skill.id === req.skill))
+            .map((data) => data.find((skill) => skill.id === req.skill)!)[0];
+
+          const isSkillValid = () =>
+            requireSkill.level >= req.level ? "" : "text-red-600";
+
+          return (
+            <Tab
+              value={`${skillName} skill level ${req.level} is needed.`}
+              style={isSkillValid()}
+              key={index}
+            />
+          );
+        })}
+
         <Tab value={`Character Level: ${currentSkill?.level}`} />
 
         {skillLevel?.minAttack && (
@@ -198,7 +216,7 @@ export const Description = () => {
   };
 
   return (
-    <div className="mb-6 relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[200px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
+    <div className="mb-6 relative flex place-items-center min-h-[360px] before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[200px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
       <a className="group rounded-lg border border-transparent py-4">
         <h2 className={`mb-3 text-2xl font-semibold`}>
           {focusSkill == 0
