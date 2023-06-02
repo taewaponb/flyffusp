@@ -25,3 +25,11 @@ export const isSpecialParams = (skill: any) => {
 export const getSpecialParamsDetail = (skill: any) => {
   return SPECIALPARAMS.find((item) => item.params === skill)?.detail;
 };
+
+export const getSpecialParamsPrefix = (skill: any) => {
+  return SPECIALPARAMS.find((item) => item.params === skill)?.prefix;
+};
+
+export const getSpecialParamsSuffix = (skill: any) => {
+  return SPECIALPARAMS.find((item) => item.params === skill)?.suffix;
+};

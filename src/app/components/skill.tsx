@@ -75,31 +75,41 @@ export const Skill = (props: any) => {
                     <span key={dataIndex} className="group relative">
                       <h2 className={`text-xs lg:text-3xl font-semibold`}>
                         <span
-                          className={`${commonStyle} inline-block translate-x-8 group-hover:translate-x-0 hover:scale-125 text-green-400`}
+                          className={`${commonStyle}  ${
+                            skillStyle(skill) != "grayscale"
+                              ? "visible"
+                              : "invisible"
+                          } inline-block translate-x-8 group-hover:-translate-x-1 hover:scale-125 text-green-400`}
                           onClick={() => updateSkillLevel(skill.id, 1)}
                         >
                           +
-                        </span>{" "}
+                        </span>
                         <Image
                           className={`${commonStyle} ${skillStyle(
                             skill
-                          )} inline-block relative z-10 group-hover:scale-110 hover:grayscale-0`}
+                          )} inline-block relative z-10 group-hover:scale-110 hover:grayscale-[50%]`}
                           src={`/skills/${getSkillDataFromId(skill.id)?.icon}`}
                           alt="skillImage"
                           width={40}
                           height={40}
                           priority
                           draggable={false}
-                          onClick={() => setFocus(skill.id)}
+                          onClick={() => {
+                            setFocus(skill.id);
+                          }}
                         />
                         <span
-                          className={`${commonStyle} inline-block absolute z-20 -right-6 lg:-right-3 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
+                          className={`${commonStyle} inline-block absolute z-20 -right-7 lg:-right-5 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
                           onClick={() => setFocus(skill.id)}
                         >
                           {textSkillLevel(skill.level)}
-                        </span>{" "}
+                        </span>
                         <span
-                          className={`${commonStyle} inline-block -translate-x-8 group-hover:translate-x-0 hover:scale-125 text-red-400`}
+                          className={`${commonStyle} ${
+                            skillStyle(skill) != "grayscale"
+                              ? "visible"
+                              : "invisible"
+                          } inline-block -translate-x-8 group-hover:translate-x-1 hover:scale-125 text-red-400`}
                           onClick={() => updateSkillLevel(skill.id, -1)}
                         >
                           -

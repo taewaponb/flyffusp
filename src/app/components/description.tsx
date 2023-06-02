@@ -6,6 +6,8 @@ import {
   getSkillContextFromId,
   getSkillDataFromId,
   getSpecialParamsDetail,
+  getSpecialParamsPrefix,
+  getSpecialParamsSuffix,
   getTimeFormat,
   isSpecialParams,
 } from "../helper/helper";
@@ -112,7 +114,9 @@ export const Description = () => {
               <Tab
                 value={`${getParamLabel(
                   scaling.parameter
-                )} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
+                )} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
+                  1
+                )}`}
                 style="font-bold"
                 key={index}
               />
@@ -177,11 +181,13 @@ export const Description = () => {
 
         {levelAbility?.map((ability, index) => {
           if (isSpecialParams(ability.parameter)) {
+            const detail = getSpecialParamsDetail(ability.parameter);
+            const prefix = getSpecialParamsPrefix(ability.parameter);
+            const suffix = getSpecialParamsSuffix(ability.parameter);
+
             return (
               <Tab
-                value={`${getSpecialParamsDetail(ability.parameter)}+${
-                  ability.add
-                }%`}
+                value={`${detail}${prefix}${ability.add}${suffix}`}
                 style="text-indigo-500"
                 key={index}
               />
@@ -193,13 +199,17 @@ export const Description = () => {
         {levelScaling?.map((scaling, index) => {
           if (isSpecialParams(scaling.parameter)) {
             const perstats = 25;
+            const detail = getSpecialParamsDetail(scaling.parameter);
+            const prefix = getSpecialParamsPrefix(scaling.parameter);
+            const suffix = getSpecialParamsSuffix(scaling.parameter);
+
             return (
               <Tab
-                value={`${getSpecialParamsDetail(
-                  scaling.parameter
-                )} Scaling: +${
+                value={`${detail} Scaling: ${prefix}${
                   Number(scaling.scale) * perstats
-                }% per ${perstats} INT (max ${scaling.maximum}%)`}
+                }${suffix} per ${perstats} INT (max ${
+                  scaling.maximum
+                }${suffix})`}
                 style="text-amber-500"
                 key={index}
               />
