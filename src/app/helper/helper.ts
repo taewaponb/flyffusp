@@ -1,10 +1,13 @@
-import { ISkillData } from "../data/interface";
-import { SKILLS, SPECIALPARAMS } from "../data/skills";
+import { ISkillContext } from "../data/interface";
+import { DEFAULTPARAMS, SKILLS, SPECIALPARAMS } from "../data/skills";
 
 export const getSkillDataFromId = (id: number) =>
   SKILLS.find((skill) => skill.id === id);
 
-export const getSkillContextFromId = (skillData: ISkillData[][], id: number) =>
+export const getSkillContextFromId = (
+  skillData: ISkillContext[][],
+  id: number
+) =>
   skillData
     .filter((data) => data.find((skill) => skill.id === id))
     .map((data) => data.find((skill) => skill.id === id)!)[0];
@@ -18,8 +21,12 @@ export const getTimeFormat = (duration: number) => {
   return time;
 };
 
-export const getSpecialParams = (skill: any) => {
-  return SPECIALPARAMS.find((item) => item.params === skill);
+export const getDefaultParams = (params: any) => {
+  return DEFAULTPARAMS.find((item) => item.params === params);
+};
+
+export const getSpecialParams = (params: any) => {
+  return SPECIALPARAMS.find((item) => item.params === params);
 };
 
 export const getPoints = (level: number) => {

@@ -7,6 +7,7 @@ import {
   getSkillDataFromId,
   getTimeFormat,
   getSpecialParams,
+  getDefaultParams,
 } from "../helper/helper";
 import { PARAMS } from "../data/enum";
 
@@ -30,21 +31,6 @@ export const Description = () => {
     const skillLevel = currentSkill?.levels[indexLevel];
     const levelAbility = skillLevel?.abilities;
     const levelScaling = skillLevel?.scalingParameters;
-
-    const getParamLabel = (param: string | undefined) => {
-      switch (param) {
-        case PARAMS.HP:
-          return "Heal";
-        case PARAMS.ATTACK:
-          return "Attack";
-        case PARAMS.TIME:
-          return "Time";
-        case PARAMS.DURATION:
-          return "Time";
-        default:
-          return param;
-      }
-    };
 
     const getRangeText = (text: string | undefined) => {
       switch (text) {
@@ -105,7 +91,7 @@ export const Description = () => {
           if (isBaseValid(ability.parameter)) {
             return (
               <Tab
-                value={`Base ${getParamLabel(ability.parameter)}: ${
+                value={`Base ${getDefaultParams(ability.parameter)?.detail}: ${
                   ability.add
                 }`}
                 style="font-bold"
@@ -120,9 +106,9 @@ export const Description = () => {
           if (isBaseValid(scaling.parameter)) {
             return (
               <Tab
-                value={`${getParamLabel(
-                  scaling.parameter
-                )} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
+                value={`${
+                  getDefaultParams(scaling.parameter)?.detail
+                } Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
                   1
                 )}`}
                 style="font-bold"
@@ -144,9 +130,9 @@ export const Description = () => {
           if (isScaleValid(scaling.parameter)) {
             return (
               <Tab
-                value={`${getParamLabel(
-                  scaling.parameter
-                )} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
+                value={`${
+                  getDefaultParams(scaling.parameter)?.detail
+                } Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
                 style="font-bold"
                 key={index}
               />

@@ -1,5 +1,31 @@
-import { ASSIST } from "./class/assist";
+import { assistSkill } from "./class/assist";
+import { PARAMS } from "./enum";
 import { ISkill } from "./interface";
+
+export const SKILLS = [...assistSkill] as ISkill[];
+
+export const DEFAULTPARAMS = [
+  {
+    params: PARAMS.HP,
+    detail: "HP",
+  },
+  {
+    params: PARAMS.TIME,
+    detail: "Time",
+  },
+  {
+    params: PARAMS.DURATION,
+    detail: "Time",
+  },
+  {
+    params: PARAMS.ATTACK,
+    detail: "Attack",
+  },
+  {
+    params: PARAMS.ATTRIBUTE,
+    detail: "Attack",
+  },
+];
 
 export const SPECIALPARAMS = [
   {
@@ -87,5 +113,3 @@ export const SPECIALPARAMS = [
     suffix: "%",
   },
 ];
-
-export const SKILLS = [...ASSIST] as ISkill[];

@@ -3,7 +3,8 @@
 import React from "react";
 import { createContext, useContext, useState } from "react";
 import { CHARACTERCLASS } from "../data/enum";
-import { IPlayerData, ISkillData } from "../data/interface";
+import { IPlayerData, ISkillContext } from "../data/interface";
+import { assistSkillContext } from "../data/class/assist";
 
 const initialUserData = {
   id: 1,
@@ -13,45 +14,14 @@ const initialUserData = {
   allPoints: 338,
 };
 
-const initialSkillData = [
-  [
-    { id: 8203, level: 0 },
-    { id: 5653, level: 0 },
-    { id: 0, level: 0 },
-    { id: 0, level: 0 },
-  ],
-  [
-    { id: 2678, level: 0 },
-    { id: 3964, level: 0 },
-    { id: 1129, level: 0 },
-    { id: 2615, level: 0 },
-  ],
-  [
-    { id: 8485, level: 0 },
-    { id: 9852, level: 0 },
-    { id: 7661, level: 0 },
-    { id: 3494, level: 0 },
-  ],
-  [
-    { id: 964, level: 0 },
-    { id: 3721, level: 0 },
-    { id: 690, level: 0 },
-    { id: 7773, level: 0 },
-  ],
-  [
-    { id: 6432, level: 0 },
-    { id: 1029, level: 0 },
-    { id: 6858, level: 0 },
-    { id: 6451, level: 0 },
-  ],
-] as ISkillData[][];
+const initialSkillData = assistSkillContext as ISkillContext[][];
 
 const AppContext = createContext<{
   userData: IPlayerData;
-  skillData: ISkillData[][];
+  skillData: ISkillContext[][];
   focusSkill: number;
   setUserData: React.Dispatch<React.SetStateAction<IPlayerData>>;
-  setSkillData: React.Dispatch<React.SetStateAction<ISkillData[][]>>;
+  setSkillData: React.Dispatch<React.SetStateAction<ISkillContext[][]>>;
   setFocusSkill: React.Dispatch<React.SetStateAction<number>>;
 }>({
   userData: initialUserData,
@@ -64,7 +34,8 @@ const AppContext = createContext<{
 
 export const AppWrapper = ({ children }: { children: JSX.Element }) => {
   const [userData, setUserData] = useState<IPlayerData>(initialUserData);
-  const [skillData, setSkillData] = useState<ISkillData[][]>(initialSkillData);
+  const [skillData, setSkillData] =
+    useState<ISkillContext[][]>(initialSkillData);
   const [focusSkill, setFocusSkill] = useState<number>(0);
 
   const sharedState = {

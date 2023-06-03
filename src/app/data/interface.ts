@@ -8,7 +8,7 @@ export interface IPlayerData {
   allPoints: number;
 }
 
-export interface ISkillData {
+export interface ISkillContext {
   id: number;
   level: number;
 }
@@ -55,7 +55,7 @@ export interface ISkillLevel {
   durationPVP?: number;
   spellRange?: number;
   abilities: IAbilities[];
-  scalingParameters: IScalingParameters[];
+  scalingParameters: IScalingParams[];
 }
 
 export interface IAbilities {
@@ -71,7 +71,7 @@ export interface IAbilities {
   pve: false;
 }
 
-export interface IScalingParameters {
+export interface IScalingParams {
   parameter: string;
   stat: string;
   scale?: number;
