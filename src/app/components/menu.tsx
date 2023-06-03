@@ -6,6 +6,7 @@ import { useAppContext } from "./context";
 export const Menu = () => {
   const { userData, skillData, setUserData, setSkillData } = useAppContext();
   const resetPoints = () => {
+    confirm("Reset your points?");
     setSkillData(
       skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 })))
     );
@@ -17,18 +18,25 @@ export const Menu = () => {
   };
 
   const setLevel = () => {
-    const level = 15;
+    let level = prompt("Type your level", "60");
+    if (level === null) return;
+    if (Number(level) < 15) level = "15";
+    if (Number(level) > 120) level = "120";
 
-    resetPoints();
+    setSkillData(
+      skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 })))
+    );
+
     setUserData({
       ...userData,
-      level: level,
-      currentPoints: getPoints(level),
+      level: Number(level),
+      currentPoints: getPoints(Number(level)),
+      allPoints: getPoints(Number(level)),
     });
   };
 
   const setClass = () => {
-    alert("Coming soon!");
+    alert("Job change is coming soon!");
   };
 
   const menuData = [
