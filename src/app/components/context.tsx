@@ -2,19 +2,23 @@
 
 import React from "react";
 import { createContext, useContext, useState } from "react";
-import { CHARACTERCLASS } from "../data/enum";
+import { JOB } from "../data/enum";
 import { IPlayerData, ISkillContext } from "../data/interface";
 import { assistSkillContext } from "../data/class/assist";
+import { ringmasterSkillContext } from "../data/class/ringmaster";
 
 const initialUserData = {
   id: 1,
-  class: CHARACTERCLASS.RINGMASTER,
+  class: JOB.RINGMASTER,
   level: 60,
   currentPoints: 338,
   allPoints: 338,
 };
 
-const initialSkillData = assistSkillContext as ISkillContext[][];
+const initialSkillData = [
+  ...assistSkillContext,
+  ...ringmasterSkillContext,
+] as ISkillContext[][];
 
 const AppContext = createContext<{
   userData: IPlayerData;

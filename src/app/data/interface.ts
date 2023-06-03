@@ -1,8 +1,8 @@
-import { CHARACTERCLASS } from "./enum";
+import { JOB } from "./enum";
 
 export interface IPlayerData {
   id: number;
-  class: CHARACTERCLASS;
+  class: JOB;
   level: number;
   currentPoints: number;
   allPoints: number;
@@ -11,6 +11,7 @@ export interface IPlayerData {
 export interface ISkillContext {
   id: number;
   level: number;
+  class?: JOB;
 }
 
 export interface ISkill {

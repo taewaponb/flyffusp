@@ -2,7 +2,7 @@ import { Skill } from "./components/skill";
 import { Header } from "./components/header";
 import { Description } from "./components/description";
 import { Menu } from "./components/menu";
-import { CHARACTERCLASS } from "./data/enum";
+import { JOB } from "./data/enum";
 import { AppWrapper } from "./components/context";
 
 export default function Home() {
@@ -12,7 +12,8 @@ export default function Home() {
         <Header />
         <Description />
         <div className="flex flex-col lg:flex-row lg:space-x-12">
-          <Skill class={CHARACTERCLASS.ASSIST} />
+          <Skill class={JOB.ASSIST} />
+          <Skill class={JOB.RINGMASTER} />
         </div>
         <Menu />
       </main>
