@@ -1,6 +1,10 @@
 import { ISkillContext } from "../data/interface";
 import { DEFAULTPARAMS, SKILLS, SPECIALPARAMS } from "../data/skills";
 
+export const wordCapitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 export const getSkillDataFromId = (id: number) =>
   SKILLS.find((skill) => skill.id === id);
 

@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import { useAppContext } from "./context";
-import { getSkillContextFromId, getSkillDataFromId } from "../helper/helper";
+import {
+  wordCapitalize,
+  getSkillContextFromId,
+  getSkillDataFromId,
+} from "../helper/helper";
 import { ISkillContext } from "../data/interface";
 
 const commonStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
@@ -60,7 +64,7 @@ export const Skill = (props: any) => {
 
   return (
     <div className="grid text-center">
-      <p className={`p-2 opacity-50`}>{props.class}</p>
+      <p className={`p-2 opacity-50`}>{wordCapitalize(props.class)}</p>
       <div
         className={`grid text-center grid-cols-5 mb-6 lg:mb-0 hover:cursor-pointer`}
       >

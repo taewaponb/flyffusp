@@ -2,7 +2,7 @@ import { JOB } from "./enum";
 
 export interface IPlayerData {
   id: number;
-  class: JOB;
+  class: JOB[];
   level: number;
   currentPoints: number;
   allPoints: number;

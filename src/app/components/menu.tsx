@@ -1,6 +1,6 @@
 "use client";
 
-import { getPoints } from "../helper/helper";
+import { wordCapitalize, getPoints } from "../helper/helper";
 import { useAppContext } from "./context";
 
 export const Menu = () => {
@@ -52,7 +52,7 @@ export const Menu = () => {
     },
     {
       header: "Job",
-      detail: `${userData.class}`,
+      detail: `${wordCapitalize(userData.class[1])}`,
       function: () => setClass(),
     },
   ];

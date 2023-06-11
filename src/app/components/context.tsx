@@ -9,7 +9,7 @@ import { ringmasterSkillContext } from "../data/class/ringmaster";
 
 const initialUserData = {
   id: 1,
-  class: JOB.RINGMASTER,
+  class: [JOB.ASSIST, JOB.RINGMASTER],
   level: 60,
   currentPoints: 338,
   allPoints: 338,
