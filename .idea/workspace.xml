@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="51792367-44eb-4fe5-a55e-2e4f7618cf4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/flyff-skill-simulator.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/florabsolutebarrier.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/rincuregvur.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/rinheahealra.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/rinsqugebura.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/rinsupanzelr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/rinsupcross.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/rinsuphguard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/rinsupprotec.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/skills/rinsupspirit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/data/allSkill.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/class/ringmaster.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/class/ringmaster.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/skills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/skills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="1fe73f3a-cf20-43fa-9c5a-9dbdada1a20e" />
+        <option name="url" value="git@github.com:taewaponb/flyff-skill-simulator.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2T4KVnjMiqKY0My1kVylYgvNLLq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowFind.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/taewaponb/Documents/flyff-skill-simulator",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "prettierjs.PrettierConfiguration.Package": "/Users/taewaponb/.nvm/versions/node/v16.20.0/lib/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/taewaponb/Documents/flyff-skill-simulator/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/skills" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="flyff-skill-simulator" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="flyff-skill-simulator" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51792367-44eb-4fe5-a55e-2e4f7618cf4d" name="Changes" comment="" />
+      <created>1690296938684</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1690296938684</updated>
+      <workItem from="1690296939792" duration="701000" />
+      <workItem from="1690297644738" duration="139000" />
+      <workItem from="1690297788806" duration="191000" />
+      <workItem from="1690297988966" duration="256000" />
+      <workItem from="1690298252914" duration="185000" />
+      <workItem from="1690298443229" duration="3097000" />
+      <workItem from="1690301951074" duration="968000" />
+      <workItem from="1690302966484" duration="133000" />
+      <workItem from="1690303151918" duration="714000" />
+      <workItem from="1690304313090" duration="156000" />
+      <workItem from="1690304502843" duration="757000" />
+      <workItem from="1691072033902" duration="7839000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

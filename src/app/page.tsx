@@ -4,7 +4,6 @@ import { Skill } from "./components/skill";
 import { Header } from "./components/header";
 import { Description } from "./components/description";
 import { Menu } from "./components/menu";
-import { JOB } from "./data/enum";
 import { AppWrapper, useAppContext } from "./components/context";
 
 export default function Home() {
@@ -16,8 +15,8 @@ export default function Home() {
         <Header />
         <Description />
         <div className="flex flex-col lg:flex-row lg:space-x-12">
-          {userData.class.map((data) => (
-            <Skill class={data} />
+          {userData.class.map((data, index) => (
+            <Skill key={index} class={data} />
           ))}
         </div>
         <Menu />
