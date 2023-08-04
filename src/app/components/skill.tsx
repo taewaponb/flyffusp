@@ -7,7 +7,7 @@ import {
   getSkillContextFromId,
   getSkillDataFromId,
 } from "../helper/helper";
-import { ISkillContext } from "../data/interface";
+import { ISkill, ISkillContext } from "../data/interface";
 
 const commonStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
@@ -17,16 +17,17 @@ export const Skill = (props: any) => {
 
   const checkIsContainSkill = (skill: number) => skill !== 0;
   const setFocus = (skillId: number) => setFocusSkill(skillId);
-  const textSkillLevel = (level: number) => {
+  const textSkillLevel = (level: number, skillId: number) => {
+    const maxSkillLevel = getSkillDataFromId(skillId)!.levels.length;
     if (level == 0) return "";
-    if (level == 20) return "max";
+    if (level == maxSkillLevel) return "max";
     else return level.toString();
   };
 
   const skillStyle = (skill: { id: number; level: number }) => {
     const currentSkill = getSkillDataFromId(skill.id);
     const requiredSkillResult = currentSkill?.requirements.map(
-      (req) => getSkillContextFromId(skillData, req.skill).level >= req.level
+      (req) => getSkillContextFromId(skillData, req.skill).level >= req.level,
     );
 
     if (requiredSkillResult?.includes(false)) return "grayscale";
@@ -37,12 +38,13 @@ export const Skill = (props: any) => {
   const updateSkillLevel = (skillId: number, value: number) => {
     setFocus(skillId);
     const pointCost = value * getSkillDataFromId(skillId)!.skillPoints;
+    const maxSkillLevel = getSkillDataFromId(skillId)!.levels.length;
     if (userData.currentPoints < pointCost) return;
     const getUpdatedLevel = (level: number) => {
       let newLevel = level + value;
       let newPoints = userData.currentPoints;
 
-      if (newLevel >= 21) newLevel = 20;
+      if (newLevel >= maxSkillLevel) newLevel = maxSkillLevel;
       else if (newLevel <= -1) newLevel = 0;
       else newPoints -= pointCost;
 
@@ -55,8 +57,8 @@ export const Skill = (props: any) => {
       data.map((skill) =>
         skill.id === skillId
           ? { ...skill, level: getUpdatedLevel(skill.level) }
-          : skill
-      )
+          : skill,
+      ),
     );
 
     setSkillData(newSkillData);
@@ -89,9 +91,9 @@ export const Skill = (props: any) => {
                     </span>
                     <Image
                       className={`${commonStyle} ${skillStyle(
-                        skill
+                        skill,
                       )} inline-block relative z-10 group-hover:scale-110 hover:${skillStyle(
-                        skill
+                        skill,
                       )}`}
                       src={`/skills/${getSkillDataFromId(skill.id)?.icon}`}
                       alt="skillImage"
@@ -107,7 +109,7 @@ export const Skill = (props: any) => {
                       className={`${commonStyle} inline-block absolute z-20 -right-7 lg:-right-5 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
                       onClick={() => setFocus(skill.id)}
                     >
-                      {textSkillLevel(skill.level)}
+                      {textSkillLevel(skill.level, skill.id)}
                     </span>
                     <span
                       className={`${commonStyle} ${
@@ -123,7 +125,7 @@ export const Skill = (props: any) => {
                 </span>
               ) : (
                 <span key={dataIndex} />
-              )
+              ),
             )}
           </div>
         ))}
