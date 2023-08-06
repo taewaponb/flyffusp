@@ -41,12 +41,6 @@ export const AppWrapper = ({ children }: { children: JSX.Element }) => {
   const [userData, setUserData] = useState<IUserData>(initialUserData);
   const [skillData, setSkillData] = useState<ISkillData[][]>(initialSkillData);
   const [focusSkill, setFocusSkill] = useState<number>(0);
-  const localUserData = JSON.parse(
-    localStorage.getItem("userData") as string,
-  ) as IUserData;
-  const localSkillData = JSON.parse(
-    localStorage.getItem("skillData") as string,
-  ) as ISkillData[][];
   const sharedState = {
     userData,
     skillData,
@@ -57,6 +51,13 @@ export const AppWrapper = ({ children }: { children: JSX.Element }) => {
   };
 
   useEffect(() => {
+    const localUserData = JSON.parse(
+      localStorage.getItem("userData") as string,
+    ) as IUserData;
+    const localSkillData = JSON.parse(
+      localStorage.getItem("skillData") as string,
+    ) as ISkillData[][];
+
     if (localUserData) setUserData(localUserData);
     if (localSkillData) setSkillData(localSkillData);
   }, []);
