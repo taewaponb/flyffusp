@@ -92,13 +92,13 @@ export const SPECIALPARAMS = [
   {
     params: "autohp",
     detail: "HP Recovery",
-    prefix: " xx Below ",
+    prefix: " Below ",
     suffix: "% (PVE)",
   },
   {
     params: "autohppvp",
     detail: "HP Recovery",
-    prefix: " xx Below ",
+    prefix: " Below ",
     suffix: "% (PVP)",
   },
   {

@@ -101,9 +101,7 @@ export const Skill = (props: any) => {
                       height={40}
                       priority
                       draggable={false}
-                      onClick={() => {
-                        setFocus(skill.id);
-                      }}
+                      onClick={() => setFocus(skill.id)}
                     />
                     <span
                       className={`${commonStyle} inline-block absolute z-20 -right-7 lg:-right-5 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}

@@ -5,6 +5,7 @@ import { Header } from "./components/header";
 import { Description } from "./components/description";
 import { Menu } from "./components/menu";
 import { AppWrapper, useAppContext } from "./components/context";
+import { Footer } from "./components/footer";
 
 export default function Home() {
   const { userData } = useAppContext();
@@ -19,7 +20,9 @@ export default function Home() {
             <Skill key={index} class={data} />
           ))}
         </div>
+        <div className="lg:mb-6" />
         <Menu />
+        <Footer />
       </main>
     </AppWrapper>
   );

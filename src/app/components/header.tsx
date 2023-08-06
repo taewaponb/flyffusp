@@ -1,3 +1,5 @@
+const GAMEDATA_VERSION = "15";
+
 export const Header = () => {
   return (
     <div className="z-50 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">

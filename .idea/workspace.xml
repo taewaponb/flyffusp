@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51792367-44eb-4fe5-a55e-2e4f7618cf4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/components/footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/description.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/description.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/skill.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/skill.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/class/assist.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/class/assist.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/data/skills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/skills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +46,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -52,6 +63,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;ToolWindowFind.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -112,7 +124,8 @@
       <workItem from="1691163542992" duration="1284000" />
       <workItem from="1691169612043" duration="6922000" />
       <workItem from="1691316525251" duration="1301000" />
-      <workItem from="1691317839319" duration="10318000" />
+      <workItem from="1691317839319" duration="11575000" />
+      <workItem from="1691339805312" duration="4780000" />
     </task>
     <servers />
   </component>
@@ -129,6 +142,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
