@@ -1,10 +1,5 @@
-import { IUserData, ISkillData } from "../data/interface";
+import { ISkillData } from "../data/interface";
 import { DEFAULTPARAMS, SKILLS, SPECIALPARAMS } from "../data/skills";
-
-export const saveData = (userData: IUserData, skillData: ISkillData[][]) => {
-  localStorage.setItem("userData", JSON.stringify(userData));
-  localStorage.setItem("skillData", JSON.stringify(skillData));
-};
 
 export const wordCapitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);

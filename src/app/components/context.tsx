@@ -62,7 +62,8 @@ export const AppWrapper = ({ children }: { children: JSX.Element }) => {
     if (localSkillData) setSkillData(localSkillData);
   }, []);
 
-  saveData(userData, skillData);
+  localStorage.setItem("userData", JSON.stringify(userData));
+  localStorage.setItem("skillData", JSON.stringify(skillData));
 
   return (
     <AppContext.Provider value={sharedState}>{children}</AppContext.Provider>
