@@ -61,8 +61,10 @@ export const AppWrapper = ({ children }: { children: JSX.Element }) => {
     if (localSkillData) setSkillData(localSkillData);
   }, []);
 
-  localStorage.setItem("userData", JSON.stringify(userData));
-  localStorage.setItem("skillData", JSON.stringify(skillData));
+  useEffect(() => {
+    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("skillData", JSON.stringify(skillData));
+  }, [userData, skillData]);
 
   return (
     <AppContext.Provider value={sharedState}>{children}</AppContext.Provider>
