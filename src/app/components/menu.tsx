@@ -6,15 +6,15 @@ import { useAppContext } from "./context";
 export const Menu = () => {
   const { userData, skillData, setUserData, setSkillData } = useAppContext();
   const resetPoints = () => {
-    confirm("Reset your points?");
-    setSkillData(
-      skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 })))
-    );
-
-    setUserData({
-      ...userData,
-      currentPoints: getPoints(userData.level),
-    });
+    if (confirm("Reset your points?")) {
+      setSkillData(
+        skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 }))),
+      );
+      setUserData({
+        ...userData,
+        currentPoints: getPoints(userData.level),
+      });
+    }
   };
 
   const setLevel = () => {
@@ -24,7 +24,7 @@ export const Menu = () => {
     if (Number(level) > 120) level = "120";
 
     setSkillData(
-      skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 })))
+      skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 }))),
     );
 
     setUserData({

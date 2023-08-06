@@ -7,7 +7,7 @@ import {
   getSkillContextFromId,
   getSkillDataFromId,
 } from "../helper/helper";
-import { ISkill, ISkillContext } from "../data/interface";
+import { ISkillContext } from "../data/interface";
 
 const commonStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
@@ -44,7 +44,7 @@ export const Skill = (props: any) => {
       let newLevel = level + value;
       let newPoints = userData.currentPoints;
 
-      if (newLevel >= maxSkillLevel) newLevel = maxSkillLevel;
+      if (newLevel > maxSkillLevel) newLevel = maxSkillLevel;
       else if (newLevel <= -1) newLevel = 0;
       else newPoints -= pointCost;
 
@@ -53,8 +53,8 @@ export const Skill = (props: any) => {
       return newLevel;
     };
 
-    const newSkillData = skillData.map((data) =>
-      data.map((skill) =>
+    const newSkillData = skillData.map((skills) =>
+      skills.map((skill) =>
         skill.id === skillId
           ? { ...skill, level: getUpdatedLevel(skill.level) }
           : skill,
@@ -70,12 +70,12 @@ export const Skill = (props: any) => {
       <div
         className={`grid text-center grid-cols-5 mb-6 lg:mb-0 hover:cursor-pointer`}
       >
-        {skillData.map((data: ISkillContext[], skillIndex: number) => (
+        {skillData.map((skillData: ISkillContext[], skillIndex: number) => (
           <div
             key={skillIndex}
             className={`grid text-center grid-rows-4 lg:mb-0 hover:cursor-pointer`}
           >
-            {data.map((skill: ISkillContext, dataIndex: number) =>
+            {skillData.map((skill: ISkillContext, dataIndex: number) =>
               props.class === skill.class && checkIsContainSkill(skill.id) ? (
                 <span key={dataIndex} className="group relative">
                   <h2 className={`text-xs lg:text-3xl font-semibold`}>
