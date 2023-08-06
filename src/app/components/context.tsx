@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 import { JOB } from "../data/enum";
-import { IPlayerData, ISkillContext } from "../data/interface";
+import { IUserData, ISkillData } from "../data/interface";
 import { assistSkillContext } from "../data/class/assist";
 import { ringmasterSkillContext } from "../data/class/ringmaster";
+import { saveData } from "@/app/helper/helper";
 
 const initialUserData = {
   id: 1,
@@ -18,14 +19,14 @@ const initialUserData = {
 const initialSkillData = [
   ...assistSkillContext,
   ...ringmasterSkillContext,
-] as ISkillContext[][];
+] as ISkillData[][];
 
 const AppContext = createContext<{
-  userData: IPlayerData;
-  skillData: ISkillContext[][];
+  userData: IUserData;
+  skillData: ISkillData[][];
   focusSkill: number;
-  setUserData: React.Dispatch<React.SetStateAction<IPlayerData>>;
-  setSkillData: React.Dispatch<React.SetStateAction<ISkillContext[][]>>;
+  setUserData: React.Dispatch<React.SetStateAction<IUserData>>;
+  setSkillData: React.Dispatch<React.SetStateAction<ISkillData[][]>>;
   setFocusSkill: React.Dispatch<React.SetStateAction<number>>;
 }>({
   userData: initialUserData,
@@ -37,11 +38,15 @@ const AppContext = createContext<{
 });
 
 export const AppWrapper = ({ children }: { children: JSX.Element }) => {
-  const [userData, setUserData] = useState<IPlayerData>(initialUserData);
-  const [skillData, setSkillData] =
-    useState<ISkillContext[][]>(initialSkillData);
+  const [userData, setUserData] = useState<IUserData>(initialUserData);
+  const [skillData, setSkillData] = useState<ISkillData[][]>(initialSkillData);
   const [focusSkill, setFocusSkill] = useState<number>(0);
-
+  const localUserData = JSON.parse(
+    localStorage.getItem("userData") as string,
+  ) as IUserData;
+  const localSkillData = JSON.parse(
+    localStorage.getItem("skillData") as string,
+  ) as ISkillData[][];
   const sharedState = {
     userData,
     skillData,
@@ -50,6 +55,13 @@ export const AppWrapper = ({ children }: { children: JSX.Element }) => {
     setSkillData,
     setFocusSkill,
   };
+
+  useEffect(() => {
+    if (localUserData) setUserData(localUserData);
+    if (localSkillData) setSkillData(localSkillData);
+  }, []);
+
+  saveData(userData, skillData);
 
   return (
     <AppContext.Provider value={sharedState}>{children}</AppContext.Provider>

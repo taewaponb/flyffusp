@@ -7,7 +7,7 @@ import {
   getSkillContextFromId,
   getSkillDataFromId,
 } from "../helper/helper";
-import { ISkillContext } from "../data/interface";
+import { ISkillData } from "../data/interface";
 
 const commonStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
@@ -70,12 +70,12 @@ export const Skill = (props: any) => {
       <div
         className={`grid text-center grid-cols-5 mb-6 lg:mb-0 hover:cursor-pointer`}
       >
-        {skillData.map((skillData: ISkillContext[], skillIndex: number) => (
+        {skillData.map((skillData: ISkillData[], skillIndex: number) => (
           <div
             key={skillIndex}
             className={`grid text-center grid-rows-4 lg:mb-0 hover:cursor-pointer`}
           >
-            {skillData.map((skill: ISkillContext, dataIndex: number) =>
+            {skillData.map((skill: ISkillData, dataIndex: number) =>
               props.class === skill.class && checkIsContainSkill(skill.id) ? (
                 <span key={dataIndex} className="group relative">
                   <h2 className={`text-xs lg:text-3xl font-semibold`}>

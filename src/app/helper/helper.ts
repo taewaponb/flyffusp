@@ -1,5 +1,10 @@
-import { ISkillContext } from "../data/interface";
+import { IUserData, ISkillData } from "../data/interface";
 import { DEFAULTPARAMS, SKILLS, SPECIALPARAMS } from "../data/skills";
+
+export const saveData = (userData: IUserData, skillData: ISkillData[][]) => {
+  localStorage.setItem("userData", JSON.stringify(userData));
+  localStorage.setItem("skillData", JSON.stringify(skillData));
+};
 
 export const wordCapitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -8,10 +13,7 @@ export const wordCapitalize = (str: string) => {
 export const getSkillDataFromId = (id: number) =>
   SKILLS.find((skill) => skill.id === id);
 
-export const getSkillContextFromId = (
-  skillData: ISkillContext[][],
-  id: number
-) =>
+export const getSkillContextFromId = (skillData: ISkillData[][], id: number) =>
   skillData
     .filter((data) => data.find((skill) => skill.id === id))
     .map((data) => data.find((skill) => skill.id === id)!)[0];

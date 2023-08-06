@@ -6,7 +6,7 @@ import { useAppContext } from "./context";
 export const Menu = () => {
   const { userData, skillData, setUserData, setSkillData } = useAppContext();
   const resetPoints = () => {
-    if (confirm("Reset your points?")) {
+    if (confirm("Reset your build?")) {
       setSkillData(
         skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 }))),
       );

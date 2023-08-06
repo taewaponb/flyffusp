@@ -20,10 +20,10 @@ export const Description = () => {
 
   const currentSkill = getSkillDataFromId(focusSkill);
   const currentSkillSet = skillData.filter((data) =>
-    data.find((skill) => skill.id === focusSkill)
+    data.find((skill) => skill.id === focusSkill),
   )[0];
   const currentSkillLevel = currentSkillSet.find(
-    (skill) => skill.id === focusSkill
+    (skill) => skill.id === focusSkill,
   )!.level;
 
   const SkillDescription = () => {
@@ -106,10 +106,9 @@ export const Description = () => {
           if (isBaseValid(scaling.parameter)) {
             return (
               <Tab
-                value={`${
-                  getDefaultParams(scaling.parameter)?.detail
-                } Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
-                  1
+                value={`${getDefaultParams(scaling.parameter)
+                  ?.detail} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
+                  1,
                 )}`}
                 style="font-bold"
                 key={index}
@@ -130,9 +129,10 @@ export const Description = () => {
           if (isScaleValid(scaling.parameter)) {
             return (
               <Tab
-                value={`${
-                  getDefaultParams(scaling.parameter)?.detail
-                } Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
+                value={`${getDefaultParams(scaling.parameter)
+                  ?.detail} Scaling: ${scaling.stat.toUpperCase()} x ${
+                  scaling.scale
+                }`}
                 style="font-bold"
                 key={index}
               />
@@ -151,7 +151,7 @@ export const Description = () => {
         {skillLevel?.spellRange && (
           <Tab
             value={`Spell Range: ${skillLevel?.spellRange} (${getRangeText(
-              currentSkill?.target
+              currentSkill?.target,
             )})`}
             style="font-bold"
           />
@@ -245,8 +245,8 @@ export const Description = () => {
             : "/class/character/ringmaster.png"
         }
         alt="descriptionImage"
-        width={180}
-        height={180}
+        width={focusSkill ? 80 : 180}
+        height={focusSkill ? 80 : 180}
         priority
         draggable={false}
       />

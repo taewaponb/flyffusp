@@ -1,6 +1,6 @@
 import { JOB } from "./enum";
 
-export interface IPlayerData {
+export interface IUserData {
   id: number;
   class: JOB[];
   level: number;
@@ -8,7 +8,7 @@ export interface IPlayerData {
   allPoints: number;
 }
 
-export interface ISkillContext {
+export interface ISkillData {
   id: number;
   level: number;
   class?: JOB;
