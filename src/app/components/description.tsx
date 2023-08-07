@@ -54,6 +54,37 @@ export const Description = () => {
       <p className={`m-0 lg:w-[40ch] text-sm ${data.style}`}>{data.value}</p>
     );
 
+    const levelScalingTab = () => {
+      if (levelScaling?.length == 2) {
+        return (
+          <Tab
+            value={`${getDefaultParams(levelScaling[0].parameter)
+              ?.detail} Scaling: ${levelScaling[0].stat.toUpperCase()} x ${levelScaling[0].scale?.toFixed(
+              1,
+            )} + ${levelScaling[1].stat.toUpperCase()} x ${levelScaling[1].scale?.toFixed(
+              1,
+            )}`}
+            style="font-bold"
+          />
+        );
+      } else {
+        return levelScaling?.map((scaling, index) => {
+          if (isBaseValid(scaling.parameter)) {
+            return (
+              <Tab
+                value={`${getDefaultParams(scaling.parameter)
+                  ?.detail} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
+                  1,
+                )}`}
+                style="font-bold"
+                key={index}
+              />
+            );
+          }
+        });
+      }
+    };
+
     return (
       <>
         <Tab
@@ -103,21 +134,7 @@ export const Description = () => {
           return null;
         })}
 
-        {levelScaling?.map((scaling, index) => {
-          if (isBaseValid(scaling.parameter)) {
-            return (
-              <Tab
-                value={`${getDefaultParams(scaling.parameter)
-                  ?.detail} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
-                  1,
-                )}`}
-                style="font-bold"
-                key={index}
-              />
-            );
-          }
-          return null;
-        })}
+        {levelScalingTab()}
 
         {skillLevel?.duration && (
           <Tab
@@ -183,15 +200,25 @@ export const Description = () => {
             const suffix = getSpecialParams(ability.parameter)?.suffix;
 
             // Bad solution but it works... for now ?
-            const devider = ability.parameter == "autohp" ? 4 : 8;
-            const detailLevel = (currentSkillLevel * 20) / devider;
-            const detailValue = ability.parameter.includes("autohp")
-              ? detailLevel.toFixed() + "%"
-              : "";
+            const detailValue = () => {
+              const divider = ability.parameter == "autohp" ? 4 : 8;
+              const detailLevel = (currentSkillLevel * 20) / divider;
+              return ability.parameter.includes("autohp")
+                ? detailLevel.toFixed() + "%"
+                : "";
+            };
+
+            const skillType = () => {
+              if (ability.pve) return "(PVE)";
+              if (ability.pvp) return "(PVP)";
+              return "";
+            };
 
             return (
               <Tab
-                value={`${detail} ${detailValue} ${prefix}${ability.add}${suffix}`}
+                value={`${detail} ${detailValue()} ${skillType()}${prefix}${
+                  ability.add
+                }${suffix}`}
                 style="text-indigo-500"
                 key={index}
               />
@@ -228,7 +255,7 @@ export const Description = () => {
   };
 
   return (
-    <div className="mb-6 relative flex place-items-center min-h-[480px] before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[200px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
+    <div className="mb-6 relative flex place-items-center min-h-[400px] before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[200px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
       <a className="group rounded-lg border border-transparent py-4">
         <h2 className={`mb-3 text-2xl font-semibold`}>
           {focusSkill == 0

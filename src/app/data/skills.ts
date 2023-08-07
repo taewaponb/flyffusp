@@ -8,7 +8,7 @@ export const SKILLS = [...assistSkill, ...ringmasterSkill] as ISkill[];
 export const DEFAULTPARAMS = [
   {
     params: PARAMS.HP,
-    detail: "HP",
+    detail: "Heal",
   },
   {
     params: PARAMS.TIME,
@@ -110,6 +110,12 @@ export const SPECIALPARAMS = [
   {
     params: "hitrate",
     detail: "Hit Rate",
+    prefix: "+",
+    suffix: "%",
+  },
+  {
+    params: "skillchance",
+    detail: "Stun Probability",
     prefix: "+",
     suffix: "%",
   },
