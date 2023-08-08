@@ -13,7 +13,7 @@ import { PARAMS } from "../data/enum";
 import { IAbilities } from "@/app/data/interface";
 
 export const Description = () => {
-  const { focusSkill, skillData } = useAppContext();
+  const { focusSkill, skillData, userData } = useAppContext();
 
   const mockTitle = "Ringmaster";
   const mockDescription =
@@ -98,19 +98,20 @@ export const Description = () => {
         {currentSkill?.requirements?.map((req, index) => {
           const skillName = getSkillDataFromId(req.skill)?.name.en;
           const requiredSkill = getSkillContextFromId(skillData, req.skill);
-          const isSkillValid =
-            requiredSkill.level >= req.level ? "" : "text-red-600";
 
           return (
             <Tab
               value={`${skillName} skill level ${req.level} is needed.`}
-              style={isSkillValid}
+              style={requiredSkill.level >= req.level ? "" : "text-red-600"}
               key={index}
             />
           );
         })}
 
-        <Tab value={`Character Level: ${currentSkill?.level}`} />
+        <Tab
+          value={`Character Level: ${currentSkill!.level}`}
+          style={userData.level >= currentSkill!.level ? "" : "text-red-600"}
+        />
 
         {skillLevel?.minAttack && (
           <Tab
@@ -166,18 +167,18 @@ export const Description = () => {
           />
         )}
 
+        {skillLevel?.cooldown && (
+          <Tab
+            value={`Cooldown: ${getTimeFormat(skillLevel?.cooldown)}`}
+            style="font-bold"
+          />
+        )}
+
         {skillLevel?.spellRange && (
           <Tab
             value={`Spell Range: ${skillLevel?.spellRange} (${getRangeText(
               currentSkill?.target,
             )})`}
-            style="font-bold"
-          />
-        )}
-
-        {skillLevel?.cooldown && (
-          <Tab
-            value={`Cooldown: ${getTimeFormat(skillLevel?.cooldown)}`}
             style="font-bold"
           />
         )}
