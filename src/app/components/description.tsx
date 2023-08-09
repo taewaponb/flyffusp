@@ -143,7 +143,7 @@ export const Description = () => {
         )}
 
         {currentFocusSkill!.attackDesc && attackBaseDescription()}
-        {currentFocusSkill!.timeDesc && attackScalingDescription()}
+        {currentFocusSkill!.attackDesc && attackScalingDescription()}
 
         {skillLevel?.duration && (
           <Tab

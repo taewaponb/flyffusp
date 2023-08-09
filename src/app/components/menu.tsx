@@ -67,7 +67,7 @@ export const Menu = () => {
   };
 
   return (
-    <div className="grid text-center lg:mb-0 lg:grid-cols-3 hover:cursor-pointer">
+    <div className="grid text-center lg:mb-0 lg:grid-cols-3 hover:cursor-pointer gap-x-2">
       {menuData.map((data) => descriptionBox(data))}
     </div>
   );

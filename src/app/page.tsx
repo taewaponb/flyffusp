@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <AppWrapper>
-      <main className="prevent-select flex min-h-screen flex-col items-center justify-between px-6 py-12">
+      <main className="prevent-select flex min-h-screen flex-col items-center justify-between px-6 lg:py-12 py-20">
         <Header />
         <Description />
         <div className="flex flex-col lg:flex-row lg:space-x-12">
