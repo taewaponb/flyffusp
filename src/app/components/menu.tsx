@@ -6,23 +6,23 @@ import { initialSkillData, initialUserData, useAppContext } from "./context";
 export const Menu = () => {
   const { userData, skillData, setUserData, setSkillData } = useAppContext();
   const resetPoints = () => {
-    if (confirm("Reset your build?")) {
+    if (confirm("Reset to Default?")) {
       setUserData(initialUserData);
       setSkillData(initialSkillData);
     }
   };
 
   const setLevel = () => {
+    const usedPoints = userData.allPoints - userData.currentPoints;
     let level = prompt("Type your level", "60");
     if (level === null) return;
     if (Number(level) < 15) level = "15";
     if (Number(level) > 120) level = "120";
 
-    setSkillData(initialSkillData);
     setUserData({
       ...userData,
       level: Number(level),
-      currentPoints: getPoints(Number(level)),
+      currentPoints: getPoints(Number(level)) - usedPoints,
       allPoints: getPoints(Number(level)),
     });
   };
