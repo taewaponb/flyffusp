@@ -1,19 +1,14 @@
 "use client";
 
 import { wordCapitalize, getPoints } from "../helper/helper";
-import { useAppContext } from "./context";
+import { initialSkillData, initialUserData, useAppContext } from "./context";
 
 export const Menu = () => {
   const { userData, skillData, setUserData, setSkillData } = useAppContext();
   const resetPoints = () => {
     if (confirm("Reset your build?")) {
-      setSkillData(
-        skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 }))),
-      );
-      setUserData({
-        ...userData,
-        currentPoints: getPoints(userData.level),
-      });
+      setUserData(initialUserData);
+      setSkillData(initialSkillData);
     }
   };
 
@@ -23,10 +18,7 @@ export const Menu = () => {
     if (Number(level) < 15) level = "15";
     if (Number(level) > 120) level = "120";
 
-    setSkillData(
-      skillData.map((data) => data.map((skill) => ({ ...skill, level: 0 }))),
-    );
-
+    setSkillData(initialSkillData);
     setUserData({
       ...userData,
       level: Number(level),

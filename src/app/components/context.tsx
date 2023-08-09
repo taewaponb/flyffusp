@@ -7,7 +7,7 @@ import { IUserData, ISkillData } from "../data/interface";
 import { assistSkillContext } from "../data/class/assist";
 import { ringmasterSkillContext } from "../data/class/ringmaster";
 
-const initialUserData = {
+export const initialUserData = {
   id: 1,
   class: [JOB.ASSIST, JOB.RINGMASTER],
   level: 60,
@@ -15,7 +15,7 @@ const initialUserData = {
   allPoints: 338,
 };
 
-const initialSkillData = [
+export const initialSkillData = [
   ...assistSkillContext,
   ...ringmasterSkillContext,
 ] as ISkillData[][];

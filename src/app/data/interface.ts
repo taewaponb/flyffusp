@@ -11,7 +11,10 @@ export interface IUserData {
 export interface ISkillData {
   id: number;
   level: number;
-  class?: JOB;
+  class: JOB;
+  scaling: boolean;
+  attackDesc: boolean;
+  timeDesc: boolean;
 }
 
 export interface ISkill {

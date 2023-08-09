@@ -119,4 +119,34 @@ export const SPECIALPARAMS = [
     prefix: "+",
     suffix: "%",
   },
+  {
+    params: "criticalresist",
+    detail: "Critical Resist",
+    prefix: "+",
+    suffix: "%",
+  },
+  {
+    params: "damage",
+    detail: "Additional Damage",
+    prefix: "+",
+    suffix: "",
+  },
+  {
+    params: "attack",
+    detail: "Increase Attack",
+    prefix: "+",
+    suffix: "%",
+  },
+  {
+    params: "magicdefense",
+    detail: "Magic Resistance",
+    prefix: "+",
+    suffix: "%",
+  },
+  {
+    params: "def",
+    detail: "Increase Defense",
+    prefix: "+",
+    suffix: "%",
+  },
 ];

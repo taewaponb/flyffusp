@@ -29,8 +29,10 @@ export const Skill = (props: any) => {
     const requiredSkillResult = currentSkill?.requirements.map(
       (req) => getSkillContextFromId(skillData, req.skill).level >= req.level,
     );
+    const requiredLevelResult = userData.level >= currentSkill!.level;
 
     if (requiredSkillResult?.includes(false)) return "grayscale";
+    // if (!requiredLevelResult) return "grayscale";
     if (skill.level == 0) return "grayscale-[50%]";
     else return "grayscale-0";
   };
