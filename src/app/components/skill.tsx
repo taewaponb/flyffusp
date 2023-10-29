@@ -9,7 +9,7 @@ import {
 } from "../helper/helper";
 import { ISkillData } from "../data/interface";
 
-const commonStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
+const transitionStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
 export const Skill = (props: any) => {
   const { userData, skillData, setSkillData, setUserData, setFocusSkill } =
@@ -27,12 +27,10 @@ export const Skill = (props: any) => {
   const skillStyle = (skill: { id: number; level: number }) => {
     const currentSkill = getSkillDataFromId(skill.id);
     const requiredSkillResult = currentSkill?.requirements.map(
-      (req) => getSkillContextFromId(skillData, req.skill).level >= req.level,
+      (req) => getSkillContextFromId(skillData, req.skill).level >= req.level
     );
-    const requiredLevelResult = userData.level >= currentSkill!.level;
 
     if (requiredSkillResult?.includes(false)) return "grayscale";
-    // if (!requiredLevelResult) return "grayscale";
     if (skill.level == 0) return "grayscale-[50%]";
     else return "grayscale-0";
   };
@@ -59,8 +57,8 @@ export const Skill = (props: any) => {
       skills.map((skill) =>
         skill.id === skillId
           ? { ...skill, level: getUpdatedLevel(skill.level) }
-          : skill,
-      ),
+          : skill
+      )
     );
 
     setSkillData(newSkillData);
@@ -82,7 +80,7 @@ export const Skill = (props: any) => {
                 <span key={dataIndex} className="group relative">
                   <h2 className={`text-xs lg:text-3xl font-semibold`}>
                     <span
-                      className={`${commonStyle}  ${
+                      className={`${transitionStyle}  ${
                         skillStyle(skill) != "grayscale"
                           ? "visible"
                           : "invisible"
@@ -92,10 +90,10 @@ export const Skill = (props: any) => {
                       +
                     </span>
                     <Image
-                      className={`${commonStyle} ${skillStyle(
-                        skill,
+                      className={`${transitionStyle} ${skillStyle(
+                        skill
                       )} inline-block relative z-10 group-hover:scale-110 hover:${skillStyle(
-                        skill,
+                        skill
                       )}`}
                       src={`/skills/${getSkillDataFromId(skill.id)?.icon}`}
                       alt="skillImage"
@@ -106,13 +104,13 @@ export const Skill = (props: any) => {
                       onClick={() => setFocus(skill.id)}
                     />
                     <span
-                      className={`${commonStyle} inline-block absolute z-20 -right-7 lg:-right-5 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
+                      className={`${transitionStyle} inline-block absolute z-20 -right-7 lg:-right-5 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
                       onClick={() => setFocus(skill.id)}
                     >
                       {textSkillLevel(skill.level, skill.id)}
                     </span>
                     <span
-                      className={`${commonStyle} ${
+                      className={`${transitionStyle} ${
                         skillStyle(skill) != "grayscale"
                           ? "visible"
                           : "invisible"
@@ -125,7 +123,7 @@ export const Skill = (props: any) => {
                 </span>
               ) : (
                 <span key={dataIndex} />
-              ),
+              )
             )}
           </div>
         ))}

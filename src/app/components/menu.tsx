@@ -2,9 +2,12 @@
 
 import { wordCapitalize, getPoints } from "../helper/helper";
 import { initialSkillData, initialUserData, useAppContext } from "./context";
+import { JobChangeMenu } from "./jobChange";
 
 export const Menu = () => {
-  const { userData, skillData, setUserData, setSkillData } = useAppContext();
+  const { userData, skillData, setUserData, setSkillData, setJobChangeMenu } =
+    useAppContext();
+
   const resetPoints = () => {
     if (confirm("Reset to Default?")) {
       setUserData(initialUserData);
@@ -28,7 +31,7 @@ export const Menu = () => {
   };
 
   const setClass = () => {
-    alert("Job change is coming soon!");
+    setJobChangeMenu(true);
   };
 
   const menuData = [
@@ -69,6 +72,7 @@ export const Menu = () => {
   return (
     <div className="grid text-center lg:mb-0 lg:grid-cols-3 hover:cursor-pointer gap-x-2">
       {menuData.map((data) => descriptionBox(data))}
+      <JobChangeMenu />
     </div>
   );
 };

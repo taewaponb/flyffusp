@@ -22,22 +22,20 @@ export const getTimeFormat = (duration: number) => {
   return time;
 };
 
-export const getDefaultParams = (params: any) => {
-  return DEFAULTPARAMS.find((item) => item.params === params);
-};
+export const getDefaultParams = (params: any) =>
+  DEFAULTPARAMS.find((item) => item.params === params);
 
-export const getSpecialParams = (params: any) => {
-  return SPECIALPARAMS.find((item) => item.params === params);
-};
+export const getSpecialParams = (params: any) =>
+  SPECIALPARAMS.find((item) => item.params === params);
 
 export const getPoints = (level: number) => {
   const minPoints = 88;
   const classBonus = 100;
   let points = minPoints;
 
-  if (level == 15) {
-    minPoints;
-  } else if (level < 21) {
+  if (level == 15) return minPoints;
+
+  if (level < 21) {
     points += 2 * (level - 15);
   } else if (level < 41) {
     points += 2 * 5 + 3 * (level - 20);
