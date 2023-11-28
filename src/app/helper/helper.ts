@@ -1,9 +1,13 @@
+import { JOB } from "../data/enum";
 import { ISkillData } from "../data/interface";
 import { DEFAULTPARAMS, SKILLS, SPECIALPARAMS } from "../data/skills";
 
 export const wordCapitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
+
+export const getRandomNumber = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
 
 export const getSkillDataFromId = (id: number) =>
   SKILLS.find((skill) => skill.id === id);
@@ -61,4 +65,23 @@ export const getPoints = (level: number) => {
   }
 
   return points;
+};
+
+export const getFistClass = (secondClass: JOB) => {
+  const firstClassMap = {
+    [JOB.KNIGHT]: JOB.MERCENARY,
+    [JOB.BLADE]: JOB.MERCENARY,
+    [JOB.ELEMENTOR]: JOB.MAGICIAN,
+    [JOB.PSYCHIKEEPER]: JOB.MAGICIAN,
+    [JOB.RINGMASTER]: JOB.ASSIST,
+    [JOB.BILLPOSTER]: JOB.ASSIST,
+    [JOB.RANGER]: JOB.ACROBAT,
+    [JOB.JESTER]: JOB.ACROBAT,
+    [JOB.MERCENARY]: JOB.MERCENARY,
+    [JOB.ASSIST]: JOB.ASSIST,
+    [JOB.ACROBAT]: JOB.ACROBAT,
+    [JOB.MAGICIAN]: JOB.MAGICIAN,
+  };
+
+  return firstClassMap[secondClass];
 };

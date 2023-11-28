@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { useAppContext } from "../components/context";
-import { wordCapitalize } from "../helper/helper";
+import { getFistClass, wordCapitalize } from "../helper/helper";
 import { JOB } from "../data/enum";
 
 export const JobChangeMenu = () => {
-  const { jobChangeMenu, setJobChangeMenu } = useAppContext();
+  const { userData, jobChangeMenu, setJobChangeMenu, setUserData } =
+    useAppContext();
   const transitionStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
   const classList = [
@@ -18,22 +19,55 @@ export const JobChangeMenu = () => {
     JOB.BILLPOSTER,
   ];
 
+  const unavailableList = [
+    JOB.KNIGHT,
+    JOB.BLADE,
+    JOB.RANGER,
+    JOB.JESTER,
+    JOB.ELEMENTOR,
+    JOB.PSYCHIKEEPER,
+    JOB.BILLPOSTER,
+  ];
+
+  const onJobChange = (index: number) => {
+    const secondJob = classList[index];
+    const fistJob = getFistClass(secondJob) || userData.class[0];
+
+    setUserData({ ...userData, class: [fistJob, secondJob] });
+    setJobChangeMenu(false);
+  };
+
   const jobDisplay = () =>
     classList.map((job, index) => {
-      return (
-        <div key={index} className="flex flex-col w-1/12 items-center group">
-          <Image
-            className={`${transitionStyle} w-full object-fit group-hover:scale-110`}
-            src={`/class/target/${job}.png`}
-            alt="jobMenuTargetImage"
-            width={33}
-            height={33}
-            draggable={false}
-            onClick={() => alert(job)}
-          />
-          <span className="font-bold">{wordCapitalize(job)}</span>
-        </div>
-      );
+      if (unavailableList.includes(job))
+        return (
+          <div key={index} className="flex flex-col w-1/12 items-center group">
+            <Image
+              className={`${transitionStyle} w-full object-fit group-hover:scale-110 grayscale`}
+              src={`/class/target/${job}.png?v1`}
+              alt="jobMenuTargetImage"
+              width={100}
+              height={100}
+              draggable={false}
+            />
+            <span className="font-bold">{wordCapitalize(job)}</span>
+          </div>
+        );
+      else
+        return (
+          <div key={index} className="flex flex-col w-1/12 items-center group">
+            <Image
+              className={`${transitionStyle} w-full object-fit group-hover:scale-110`}
+              src={`/class/target/${job}.png?v1`}
+              alt="jobMenuTargetImage"
+              width={100}
+              height={100}
+              draggable={false}
+              onClick={() => onJobChange(index)}
+            />
+            <span className="font-bold">{wordCapitalize(job)}</span>
+          </div>
+        );
     });
 
   return jobChangeMenu ? (

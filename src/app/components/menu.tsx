@@ -5,7 +5,7 @@ import { initialSkillData, initialUserData, useAppContext } from "./context";
 import { JobChangeMenu } from "./jobChange";
 
 export const Menu = () => {
-  const { userData, skillData, setUserData, setSkillData, setJobChangeMenu } =
+  const { userData, setUserData, setSkillData, setJobChangeMenu } =
     useAppContext();
 
   const resetPoints = () => {

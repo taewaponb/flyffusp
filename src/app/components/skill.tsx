@@ -11,7 +11,7 @@ import { ISkillData } from "../data/interface";
 
 const transitionStyle = `transition-transform motion-reduce:transform-none ease-in-out duration-500`;
 
-export const Skill = (props: any) => {
+export const Skill = () => {
   const { userData, skillData, setSkillData, setUserData, setFocusSkill } =
     useAppContext();
 
@@ -65,69 +65,73 @@ export const Skill = (props: any) => {
   };
 
   return (
-    <div className="grid text-center">
-      <p className={`p-2 opacity-50`}>{wordCapitalize(props.class)}</p>
-      <div
-        className={`grid text-center grid-cols-5 mb-6 lg:mb-0 hover:cursor-pointer`}
-      >
-        {skillData.map((skillData: ISkillData[], skillIndex: number) => (
+    <div className="flex flex-col lg:flex-row lg:space-x-12">
+      {userData.class.map((job, index) => (
+        <div key={index} className="grid text-center">
+          <p className={`p-2 opacity-50`}>{wordCapitalize(job)}</p>
           <div
-            key={skillIndex}
-            className={`grid text-center grid-rows-4 lg:mb-0 hover:cursor-pointer`}
+            className={`grid text-center grid-cols-5 mb-6 lg:mb-0 hover:cursor-pointer`}
           >
-            {skillData.map((skill: ISkillData, dataIndex: number) =>
-              props.class === skill.class && checkIsContainSkill(skill.id) ? (
-                <span key={dataIndex} className="group relative">
-                  <h2 className={`text-xs lg:text-3xl font-semibold`}>
-                    <span
-                      className={`${transitionStyle}  ${
-                        skillStyle(skill) != "grayscale"
-                          ? "visible"
-                          : "invisible"
-                      } inline-block translate-x-8 group-hover:-translate-x-1 hover:scale-125 text-green-400`}
-                      onClick={() => updateSkillLevel(skill.id, 1)}
-                    >
-                      +
+            {skillData.map((skillData: ISkillData[], skillIndex: number) => (
+              <div
+                key={skillIndex}
+                className={`grid text-center grid-rows-4 lg:mb-0 hover:cursor-pointer`}
+              >
+                {skillData.map((skill: ISkillData, dataIndex: number) =>
+                  job === skill.class && checkIsContainSkill(skill.id) ? (
+                    <span key={dataIndex} className="group relative">
+                      <h2 className={`text-xs lg:text-3xl font-semibold`}>
+                        <span
+                          className={`${transitionStyle}  ${
+                            skillStyle(skill) != "grayscale"
+                              ? "visible"
+                              : "invisible"
+                          } inline-block translate-x-8 group-hover:-translate-x-1 hover:scale-125 text-green-400`}
+                          onClick={() => updateSkillLevel(skill.id, 1)}
+                        >
+                          +
+                        </span>
+                        <Image
+                          className={`${transitionStyle} ${skillStyle(
+                            skill
+                          )} inline-block relative z-10 group-hover:scale-110 hover:${skillStyle(
+                            skill
+                          )}`}
+                          src={`/skills/${getSkillDataFromId(skill.id)?.icon}`}
+                          alt="skillImage"
+                          width={40}
+                          height={40}
+                          priority
+                          draggable={false}
+                          onClick={() => setFocus(skill.id)}
+                        />
+                        <span
+                          className={`${transitionStyle} inline-block absolute z-20 -right-7 lg:-right-5 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
+                          onClick={() => setFocus(skill.id)}
+                        >
+                          {textSkillLevel(skill.level, skill.id)}
+                        </span>
+                        <span
+                          className={`${transitionStyle} ${
+                            skillStyle(skill) != "grayscale"
+                              ? "visible"
+                              : "invisible"
+                          } inline-block -translate-x-8 group-hover:translate-x-1 hover:scale-125 text-red-400`}
+                          onClick={() => updateSkillLevel(skill.id, -1)}
+                        >
+                          -
+                        </span>
+                      </h2>
                     </span>
-                    <Image
-                      className={`${transitionStyle} ${skillStyle(
-                        skill
-                      )} inline-block relative z-10 group-hover:scale-110 hover:${skillStyle(
-                        skill
-                      )}`}
-                      src={`/skills/${getSkillDataFromId(skill.id)?.icon}`}
-                      alt="skillImage"
-                      width={40}
-                      height={40}
-                      priority
-                      draggable={false}
-                      onClick={() => setFocus(skill.id)}
-                    />
-                    <span
-                      className={`${transitionStyle} inline-block absolute z-20 -right-7 lg:-right-5 text-sm -translate-x-10 translate-y-5 group-hover:scale-110 drop-shadow-[1px_1px_3px_#FF0000]`}
-                      onClick={() => setFocus(skill.id)}
-                    >
-                      {textSkillLevel(skill.level, skill.id)}
-                    </span>
-                    <span
-                      className={`${transitionStyle} ${
-                        skillStyle(skill) != "grayscale"
-                          ? "visible"
-                          : "invisible"
-                      } inline-block -translate-x-8 group-hover:translate-x-1 hover:scale-125 text-red-400`}
-                      onClick={() => updateSkillLevel(skill.id, -1)}
-                    >
-                      -
-                    </span>
-                  </h2>
-                </span>
-              ) : (
-                <span key={dataIndex} />
-              )
-            )}
+                  ) : (
+                    <span key={dataIndex} />
+                  )
+                )}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };

@@ -8,23 +8,28 @@ import {
   getTimeFormat,
   getSpecialParams,
   getDefaultParams,
+  wordCapitalize,
 } from "../helper/helper";
 import { PARAMS } from "../data/enum";
 import { IAbilities } from "@/app/data/interface";
+import { classDescription } from "../data/class/description";
 
 export const Description = () => {
   const { focusSkill, skillData, userData } = useAppContext();
 
-  const mockTitle = "Ringmaster";
-  const mockDescription =
-    "Ringmasters make great allies, using their sticks to protect themselves and their friends. Their use of healing and support capabilities make them vital party members in any battle.";
+  const userFirstJob = userData.class[0];
+  const userSecondJob = userData.class[1];
+
+  const currentJob = classDescription.find(
+    (item) => item.JOB === userSecondJob
+  );
 
   const currentSkill = getSkillDataFromId(focusSkill);
   const currentSkillSet = skillData.filter((data) =>
-    data.find((skill) => skill.id === focusSkill),
+    data.find((skill) => skill.id === focusSkill)
   )[0];
   const currentFocusSkill = currentSkillSet.find(
-    (skill) => skill.id === focusSkill,
+    (skill) => skill.id === focusSkill
   );
 
   const SkillDescription = () => {
@@ -80,11 +85,12 @@ export const Description = () => {
         ) {
           return (
             <Tab
-              value={`${getDefaultParams(levelScaling[0].parameter)
-                ?.detail} Scaling: ${levelScaling[0].stat.toUpperCase()} x ${levelScaling[0].scale?.toFixed(
-                1,
+              value={`${
+                getDefaultParams(levelScaling[0].parameter)?.detail
+              } Scaling: ${levelScaling[0].stat.toUpperCase()} x ${levelScaling[0].scale?.toFixed(
+                1
               )} + ${levelScaling[1].stat.toUpperCase()} x ${levelScaling[1].scale?.toFixed(
-                1,
+                1
               )}`}
               style="font-bold"
             />
@@ -95,9 +101,10 @@ export const Description = () => {
         if (isBaseValid(scaling.parameter)) {
           return (
             <Tab
-              value={`${getDefaultParams(scaling.parameter)
-                ?.detail} Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
-                1,
+              value={`${
+                getDefaultParams(scaling.parameter)?.detail
+              } Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale?.toFixed(
+                1
               )}`}
               style="font-bold"
               key={index}
@@ -156,10 +163,9 @@ export const Description = () => {
           if (isScaleValid(scaling.parameter)) {
             return (
               <Tab
-                value={`${getDefaultParams(scaling.parameter)
-                  ?.detail} Scaling: ${scaling.stat.toUpperCase()} x ${
-                  scaling.scale
-                }`}
+                value={`${
+                  getDefaultParams(scaling.parameter)?.detail
+                } Scaling: ${scaling.stat.toUpperCase()} x ${scaling.scale}`}
                 style="font-bold"
                 key={index}
               />
@@ -185,7 +191,7 @@ export const Description = () => {
         {skillLevel?.spellRange && (
           <Tab
             value={`Spell Range: ${skillLevel?.spellRange} (${getRangeText(
-              currentSkill?.target,
+              currentSkill?.target
             )})`}
             style="font-bold"
           />
@@ -271,7 +277,7 @@ export const Description = () => {
       <div className="group rounded-lg border border-transparent py-4">
         <h2 className={`mb-3 text-2xl font-semibold`}>
           {focusSkill == 0
-            ? mockTitle
+            ? wordCapitalize(userSecondJob)
             : `${getSkillDataFromId(focusSkill)?.name.en} ${
                 currentFocusSkill!.level != 0
                   ? `Lv. ${currentFocusSkill!.level}`
@@ -280,7 +286,7 @@ export const Description = () => {
         </h2>
         {focusSkill == 0 ? (
           <p className={`m-0 lg:w-[40ch] text-sm opacity-50`}>
-            {mockDescription}
+            {currentJob?.DESCRIPTION}
           </p>
         ) : (
           <SkillDescription />
@@ -291,7 +297,7 @@ export const Description = () => {
         src={
           focusSkill
             ? `/skills/${currentSkill?.icon}`
-            : "/class/character/ringmaster.png"
+            : `/class/character/${userSecondJob}.png?v1`
         }
         alt="descriptionImage"
         width={focusSkill ? 120 : 180}
